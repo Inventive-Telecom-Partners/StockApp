@@ -139,28 +139,13 @@
             </li>
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-               <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
+          <li class="nav-item">
+            <a href="{{url('/stock')}}" class="nav-link {{(app('request')->route()->uri() == 'stock') ? 'active' : ''}}">
+              <i class="nav-icon fas fa-box-open"></i>
               <p>
-                Stock
-                <i class="fas fa-angle-left right"></i>
+                Voir état des stocks
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="index.php?add_stock" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>ajouter stock</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{url('/stock')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Voir stock</p>
-                </a>
-              </li>
-            </ul>
           </li>
 
           <li class="nav-item">
@@ -168,6 +153,15 @@
               <i class="nav-icon fas fa-chart-bar"></i>
               <p>
                 Graphiques
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{{url('/report')}}" class="nav-link">
+              <i class="nav-icon fas fa-copy"></i>
+              <p>
+                Génération de rapport
               </p>
             </a>
           </li>
@@ -200,7 +194,7 @@
     <strong>Copyright &copy; 2022 Inventive Telecom Partner</strong>
     with <i class="fas fa-heart"></i>
     <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 1.0
+      <b>Version</b> 1.5
     </div>
   </footer>
 
