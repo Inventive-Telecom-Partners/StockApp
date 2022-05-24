@@ -44,7 +44,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index.php?dashboard" class="nav-link">Dashboard</a>
+        <a href="index.php?dashboard" class="nav-link">Menu</a>
       </li>
     </ul>
 
@@ -96,7 +96,7 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index.php?dashboard" class="brand-link">
+    <a href="{{url('/')}}" class="brand-link">
       <img src="{{asset('assets/dist/img/logo/logoTest.png')}}" alt="Logo">
     </a>
 
@@ -108,7 +108,7 @@
           <img src="{{asset('assets/dist/img/users/testImage.png')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="index.php?show_user" class="d-block">email</a>
+          <a href="index.php?show_user" class="d-block">Mettre Nom user ici</a>
         </div>
       </div>
 
@@ -158,7 +158,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="{{url('/report')}}" class="nav-link">
+            <a href="{{url('/report')}}" class="nav-link {{(app('request')->route()->uri() == 'report') ? 'active' : ''}}">
               <i class="nav-icon fas fa-copy"></i>
               <p>
                 Génération de rapport
@@ -167,7 +167,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="{{url('/logout')}}" class="nav-link">
+            <a href="{{url('/logout')}}" class="nav-link {{(app('request')->route()->uri() == 'logout') ? 'active' : ''}}">
               <i class="fa fa-fw fa-power-off"></i>
               <p>
                 Déconnexion
@@ -185,7 +185,7 @@
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-        @yield('content')
+        @yield('mainContent')
     </div>
     <!-- /.content-wrapper -->
 
@@ -363,6 +363,12 @@
       data: pieData,
       options: pieOptions
     })
+  })
+</script>
+<script>
+  $(function () {
+//Date range picker
+    $('#reservation').daterangepicker()
   })
 </script>
 </body>

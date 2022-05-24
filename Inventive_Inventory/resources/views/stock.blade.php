@@ -1,6 +1,6 @@
 @extends('user')
 
-@section('content')
+@section('mainContent')
 
     <section class="content-header">
       <div class="container-fluid">
@@ -17,13 +17,13 @@
       <div class="container-fluid">
         <div class="row">
               <div class="col-md-12">
-                <div class="card">
+                <div class="card collapsed-card">
                   <div class="card-header">
                     <h5 class="card-title" data-card-widget="collapse">Stock Vente <span class="badge badge-info right">156</span></h5>
 
                     <div class="card-tools">
                       <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                        <i class="fas fa-minus"></i>
+                        <i class="fas fa-plus"></i>
                       </button>
                     </div>
                   </div>
@@ -57,13 +57,13 @@
       <div class="container-fluid">
         <div class="row">
               <div class="col-md-12">
-                <div class="card">
+                <div class="card collapsed-card">
                   <div class="card-header">
-                    <h5 class="card-title" data-card-widget="collapse">Stock Maintenace <span class="badge badge-info right">459</span></h5>
+                    <h5 class="card-title" data-card-widget="collapse">Stock Maintenance <span class="badge badge-info right">Ici se retrouve le nombre d'item dans le stock (ex 459)</span></h5>
 
                     <div class="card-tools">
                       <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                        <i class="fas fa-minus"></i>
+                        <i class="fas fa-plus"></i>
                       </button>
                     </div>
                   </div>
@@ -100,7 +100,7 @@
               <div class="col-md-12">
                 <div class="card">
                   <div class="card-header">
-                    <h5 class="card-title" data-card-widget="collapse">TOUTES LES STOCK</h5>
+                    <h5 class="card-title" data-card-widget="collapse">TOUS LES STOCK</h5>
 
                     <div class="card-tools">
                       <button type="button" class="btn btn-tool" data-card-widget="collapse">

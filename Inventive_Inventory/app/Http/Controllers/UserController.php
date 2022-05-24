@@ -22,4 +22,12 @@ class UserController extends Controller
         return view('charts');
     }
 
+    public function report(){
+        return view('report');
+    }
+
+    public function logout(){
+        return view('logout');
+    }
+
 }

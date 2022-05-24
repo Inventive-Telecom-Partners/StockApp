@@ -25,3 +25,7 @@ Route::get('/profile', [UserController::class,'profile']);
 Route::get('/charts', [UserController::class,'charts']);
 
 Route::get('/stock', [UserController::class,'stock']);
+
+Route::get('/report', [UserController::class,'report']);
+
+Route::get('/logout', [UserController::class,'logout']);
