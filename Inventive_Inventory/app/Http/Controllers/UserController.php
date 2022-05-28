@@ -30,4 +30,8 @@ class UserController extends Controller
         return view('logout');
     }
 
+    public function admin(){
+        return view('admin');
+    }
+
 }

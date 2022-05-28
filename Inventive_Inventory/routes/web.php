@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-
+use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,10 +14,16 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('home');
+// });
 
+/* Routes - Home */
+Route::get('/', [HomeController::class,'index']);
+Route::get('/StockIn', [HomeController::class,'in']);
+Route::get('/StockOut', [HomeController::class,'out']);
+
+/* Routes - User */
 Route::get('/user', [UserController::class,'index']);
 
 Route::get('/profile', [UserController::class,'profile']);
@@ -29,3 +35,5 @@ Route::get('/stock', [UserController::class,'stock']);
 Route::get('/report', [UserController::class,'report']);
 
 Route::get('/logout', [UserController::class,'logout']);
+
+Route::get('/admin', [UserController::class,'admin']);
