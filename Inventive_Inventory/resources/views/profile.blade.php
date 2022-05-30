@@ -1,4 +1,4 @@
-    @extends('user')
+    @extends('/layout/user')
 
     @section('mainContent')
     <!-- Content Header (Page header) -->

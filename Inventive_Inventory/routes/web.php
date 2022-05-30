@@ -22,6 +22,7 @@ use App\Http\Controllers\HomeController;
 Route::get('/', [HomeController::class,'index']);
 Route::get('/StockIn', [HomeController::class,'in']);
 Route::get('/StockOut', [HomeController::class,'out']);
+Route::get('/Login', [HomeController::class,'login']);
 
 /* Routes - User */
 Route::get('/user', [UserController::class,'index']);
