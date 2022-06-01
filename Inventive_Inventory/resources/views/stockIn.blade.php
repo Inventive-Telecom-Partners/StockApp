@@ -9,6 +9,7 @@
       <a href="../../index2.html" class="h3"><b>Formulaire d'entrée</b></a>
     </div>
     <div class="card-body">
+    <p class="login-box-msg">Veuillez entrer les informations de l'objet entré: (le badge, le numéro de série et la description sont obligatoires)!</p>
       <form action="../../index3.html" method="post">
             <div class="row">
                 <div class="col-6">
@@ -64,24 +65,24 @@
                 <div class="col-6">
                 <label class="col-form-label">Emplacement</label>
                     <div class="input-group mb-3">
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Séléctionnez un stock</option>
+                        <select class="custom-select" aria-label="Default select example">
+                            <option selected>Stock?</option>
                             <option value="1">Vente</option>
                             <option value="2">Maintenance</option>
                             <option value="3">Alibaba</option>
                         </select>
                     </div>
                     <div class="input-group mb-3">
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Séléctionnez une étagère</option>
+                        <select class="custom-select" aria-label="Default select example">
+                            <option selected>Etagère?</option>
                             <option value="1">M1</option>
                             <option value="2">M2</option>
                             <option value="3">M3</option>
                         </select>
                     </div>
                     <div class="input-group mb-3">
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Séléctionnez un étage</option>
+                        <select class="custom-select" aria-label="Default select example">
+                            <option selected>Etage?</option>
                             <option value="1">A</option>
                             <option value="2">B</option>
                             <option value="3">C</option>
@@ -95,6 +96,12 @@
                         <span class="fas fa-calendar-check"></span>
                         </div>
                     </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                        <label class="form-check-label" for="flexSwitchCheckDefault">Toujours avoir en stock</label>
+                        </div>
                     </div>
                 </div>
             </div>

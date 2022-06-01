@@ -20,31 +20,34 @@
     <link rel="stylesheet" href="{{asset('assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
     </head>
     <body>   
-    <!-- Preloader -->
+    <div class="wrapper">
+        <!-- Preloader -->
     <div class="preloader flex-column justify-content-center align-items-center">
         <img class="animation__shake" src="{{asset('assets/dist/img/logo/itpStock.png')}}" alt="Logo" height="180" width="180">
     </div>
-
-    <header class="header-area header-sticky" style="min-height : 120px">
-            <div class="row justify-content-around" style="padding: 20px; margin: 0px;">
-                    <a href="{{url('/')}}" class="logo">
-                            <img src="{{asset('assets/dist/img/logo/itpStock.png')}}" alt="Logo" style="height : 7vmax">
-                    </a>
-                    <h1 class="nav">Inventive Inventory</h1>
-                    <nav class="main-nav">
-                        <ul class="nav">
-                            <li><a href="{{url('/Login')}}">Se connecter</a></li>
-                        </ul>
-                        <a class='menu-trigger'>
-                            <span>Menu</span>
-                        </a>        
-                    </nav>
-            </div>
-    </header>
-    <div class="content-wrapper justify-content-center" style="margin-left:0px; align-items: center; display:flex; background-image:url({{asset('assets/dist/img/accueil/inventory.jpg')}});background-size: cover; background-repeat: no-repeat;" >
-            @yield('mainContent')
-    </div>
-    <footer class="main-footer" style="margin: 0px; position:absolute; bottom: 0; width:100%">
+    <!-- Section Header begin -->
+    <section>
+        <header class="main-header navbar navbar-expand navbar-white navbar-light justify-content-around" style="margin-left:0px;">
+            <a href="{{url('/')}}" class="logo">
+                <img src="{{asset('assets/dist/img/logo/itpStock.png')}}" alt="Logo" style="height : 7vmax">
+            </a>
+            <h1 class="nav">Inventive Inventory</h1>
+            <nav class="main-nav">
+                <ul class="nav">
+                    <li><a href="{{url('/Login')}}">Se connecter</a></li>
+                </ul>  
+            </nav>
+        </header>
+    </section>
+    <!-- Section Header end -->
+    <!-- Section Content begin -->
+    <section>
+        <div class="content-wrapper justify-content-center" style="margin-left:0px; align-items: center; display:flex; background-image:url({{asset('assets/dist/img/accueil/inventory.jpg')}});background-size: cover; background-repeat: no-repeat;" >
+                @yield('mainContent')
+        </div>
+    </section>
+    <!-- Section Header end -->
+    <footer class="main-footer" style="margin: 0px; ">
     <strong>Copyright &copy; 2022 Inventive Telecom Partner</strong>
     with <i class="fas fa-heart"></i>
     <div class="float-right d-none d-sm-inline-block">
@@ -52,15 +55,16 @@
     </div>
   </footer>
 </div>
-<!-- jQuery -->
-<script src="{{asset('assets/plugins/jquery/jquery.min.js')}}"></script>
+    </div>
+    <!-- jQuery -->
+    <script src="{{asset('assets/plugins/jquery/jquery.min.js')}}"></script>
 
-<script src="{{asset('assets/plugins/bootstrap/js/bootstrap.bundle.js')}}"></script>
-<!-- AdminLTE App -->
-<script src="{{asset('assets/dist/js/adminlte.js')}}"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{asset('assets/dist/js/pages/dashboard.js')}}"></script>
-<!-- Bootstrap 4 -->
-<script src="{{asset('assetsplugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-</body>
+    <script src="{{asset('assets/plugins/bootstrap/js/bootstrap.bundle.js')}}"></script>
+    <!-- AdminLTE App -->
+    <script src="{{asset('assets/dist/js/adminlte.js')}}"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="{{asset('assets/dist/js/pages/dashboard.js')}}"></script>
+    <!-- Bootstrap 4 -->
+    <script src="{{asset('assetsplugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    </body>
 </html>

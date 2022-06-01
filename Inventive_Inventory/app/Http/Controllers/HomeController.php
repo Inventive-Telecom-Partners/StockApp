@@ -11,14 +11,17 @@ class HomeController extends Controller
     }
 
     public function in(){
-        return view('StockIn');
+        return view('stockIn');
     }
 
     public function out(){
-        return view('StockOut');
+        return view('stockOut');
     }
 
     public function login(){
-        return view('Login');
+        return view('login');
+    }
+    public function research(){
+        return view('research');
     }
 }

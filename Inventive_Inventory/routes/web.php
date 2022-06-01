@@ -20,9 +20,10 @@ use App\Http\Controllers\HomeController;
 
 /* Routes - Home */
 Route::get('/', [HomeController::class,'index']);
-Route::get('/StockIn', [HomeController::class,'in']);
-Route::get('/StockOut', [HomeController::class,'out']);
-Route::get('/Login', [HomeController::class,'login']);
+Route::get('/stockIn', [HomeController::class,'in']);
+Route::get('/stockOut', [HomeController::class,'out']);
+Route::get('/login', [HomeController::class,'login']);
+Route::get('/research', [HomeController::class,'research']);
 
 /* Routes - User */
 Route::get('/user', [UserController::class,'index']);
