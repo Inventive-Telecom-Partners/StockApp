@@ -44,7 +44,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index.php?dashboard" class="nav-link">Menu</a>
+        <a href="/" class="nav-link">Retour à l'accueil</a>
       </li>
     </ul>
 
@@ -149,10 +149,28 @@
           </li>
 
           <li class="nav-item">
+            <a href="{{url('/stock')}}" class="nav-link {{(app('request')->route()->uri() == 'gestion') ? 'active' : ''}}">
+              <i class="nav-icon fas fa-inbox"></i>
+              <p>
+                Gérer les stocks
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
             <a href="{{url('/charts')}}" class="nav-link {{(app('request')->route()->uri() == 'charts') ? 'active' : ''}}">
               <i class="nav-icon fas fa-chart-bar"></i>
               <p>
-                Graphiques
+                Mes Graphiques
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{{url('/chartsAdmin')}}" class="nav-link {{(app('request')->route()->uri() == 'chartsAdmin') ? 'active' : ''}}">
+              <i class="nav-icon fas fa-chart-pie"></i>
+              <p>
+                Graphiques généraux
               </p>
             </a>
           </li>
@@ -162,6 +180,15 @@
               <i class="nav-icon fas fa-copy"></i>
               <p>
                 Génération de rapport
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{{url('/report')}}" class="nav-link {{(app('request')->route()->uri() == 'report') ? 'active' : ''}}">
+              <i class="nav-icon fas fa-dollar-sign"></i>
+              <p>
+                Revente ebay
               </p>
             </a>
           </li>
@@ -362,6 +389,52 @@
       type: 'pie',
       data: pieData,
       options: pieOptions
+    })
+
+    //-------------
+    //- LINE CHART Maintenance -
+    //--------------
+    var lineChartCanvas = $('#lineChartMaintenance').get(0).getContext('2d')
+    var lineChartOptions = $.extend(true, {}, barChartOptions)
+    var lineChartData = $.extend(true, {}, barChartData)
+    lineChartData.datasets[0].fill = false;
+    lineChartData.datasets[1].fill = false;
+    lineChartOptions.datasetFill = false
+
+    var lineChart = new Chart(lineChartCanvas, {
+      type: 'line',
+      data: lineChartData,
+      options: lineChartOptions
+    })
+    //-------------
+    //- LINE CHART Vente -
+    //--------------
+    var lineChartCanvas = $('#lineChartVente').get(0).getContext('2d')
+    var lineChartOptions = $.extend(true, {}, barChartOptions)
+    var lineChartData = $.extend(true, {}, barChartData)
+    lineChartData.datasets[0].fill = false;
+    lineChartData.datasets[1].fill = false;
+    lineChartOptions.datasetFill = false
+
+    var lineChart = new Chart(lineChartCanvas, {
+      type: 'line',
+      data: lineChartData,
+      options: lineChartOptions
+    })
+    //-------------
+    //- LINE CHART Alibaba -
+    //--------------
+    var lineChartCanvas = $('#lineChartAlibaba').get(0).getContext('2d')
+    var lineChartOptions = $.extend(true, {}, barChartOptions)
+    var lineChartData = $.extend(true, {}, barChartData)
+    lineChartData.datasets[0].fill = false;
+    lineChartData.datasets[1].fill = false;
+    lineChartOptions.datasetFill = false
+
+    var lineChart = new Chart(lineChartCanvas, {
+      type: 'line',
+      data: lineChartData,
+      options: lineChartOptions
     })
   })
 </script>

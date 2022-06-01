@@ -31,7 +31,11 @@ class UserController extends Controller
     }
 
     public function admin(){
-        return view('admin');
+        return view('/layout/admin');
+    }
+
+    public function chartsAdmin(){
+        return view('/chartsAdmin');
     }
 
 }

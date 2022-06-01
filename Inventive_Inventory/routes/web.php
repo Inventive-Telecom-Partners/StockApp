@@ -39,3 +39,5 @@ Route::get('/report', [UserController::class,'report']);
 Route::get('/logout', [UserController::class,'logout']);
 
 Route::get('/admin', [UserController::class,'admin']);
+
+Route::get('/chartsAdmin', [UserController::class,'chartsAdmin']);
