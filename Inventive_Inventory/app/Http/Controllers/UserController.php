@@ -38,4 +38,15 @@ class UserController extends Controller
         return view('/chartsAdmin');
     }
 
+    public function sales(){
+        return view('ebay');
+    }
+
+    public function adduser(){
+        return view('addUser');
+    }
+
+    public function manage(){
+        return view('manage');
+    }
 }

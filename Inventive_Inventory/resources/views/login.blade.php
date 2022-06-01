@@ -9,7 +9,7 @@
       <a href="../../index2.html" class="h3"><b>Inventive-Inventory</b></a>
     </div>
     <div class="card-body">
-      <p class="login-box-msg">Enregistrez-vous pour commencer à naviguer sur l'application</p>
+      <p class="login-box-msg">Connectez-vous pour commencer à naviguer sur l'application</p>
 
       <form action="../../index3.html" method="post">
         <div class="input-group mb-3">

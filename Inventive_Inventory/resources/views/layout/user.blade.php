@@ -131,7 +131,7 @@
 
             <li class="nav-item">
                 <a href="{{url('/profile')}}" class="nav-link {{(app('request')->route()->uri() == 'profile') ? 'active' : ''}}">
-                <i class="nav-icon fas fa-users"></i>
+                <i class="nav-icon fas fa-user"></i>
                 <p>
                     Profil
                 </p>

@@ -38,6 +38,14 @@ Route::get('/report', [UserController::class,'report']);
 
 Route::get('/logout', [UserController::class,'logout']);
 
+/* Routes - Admin */
+
 Route::get('/admin', [UserController::class,'admin']);
 
 Route::get('/chartsAdmin', [UserController::class,'chartsAdmin']);
+
+Route::get('/sales', [UserController::class,'sales']);
+
+Route::get('/adduser', [UserController::class,'adduser']);
+
+Route::get('/manage', [UserController::class,'manage']);

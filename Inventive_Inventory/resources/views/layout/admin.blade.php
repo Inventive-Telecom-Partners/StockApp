@@ -131,9 +131,17 @@
 
             <li class="nav-item">
                 <a href="{{url('/profile')}}" class="nav-link {{(app('request')->route()->uri() == 'profile') ? 'active' : ''}}">
-                <i class="nav-icon fas fa-users"></i>
+                <i class="nav-icon fas fa-user"></i>
                 <p>
                     Profil
+                </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{url('/adduser')}}" class="nav-link {{(app('request')->route()->uri() == 'adduser') ? 'active' : ''}}">
+                <i class="nav-icon fas fa-users"></i>
+                <p>
+                    Ajouter utilisateur
                 </p>
                 </a>
             </li>
@@ -149,7 +157,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="{{url('/stock')}}" class="nav-link {{(app('request')->route()->uri() == 'gestion') ? 'active' : ''}}">
+            <a href="{{url('/manage')}}" class="nav-link {{(app('request')->route()->uri() == 'manage') ? 'active' : ''}}">
               <i class="nav-icon fas fa-inbox"></i>
               <p>
                 Gérer les stocks
@@ -185,7 +193,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="{{url('/report')}}" class="nav-link {{(app('request')->route()->uri() == 'report') ? 'active' : ''}}">
+            <a href="{{url('/sales')}}" class="nav-link {{(app('request')->route()->uri() == 'sales') ? 'active' : ''}}">
               <i class="nav-icon fas fa-dollar-sign"></i>
               <p>
                 Revente ebay
@@ -263,8 +271,7 @@
 <script src="{{asset('assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{asset('assets/dist/js/adminlte.js')}}"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="{{asset('assets/dist/js/demo.js')}}"></script>
+<script src="{{asset('assets/dist/js/adminlte.min.js')}}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{asset('assets/dist/js/pages/dashboard.js')}}"></script>
 

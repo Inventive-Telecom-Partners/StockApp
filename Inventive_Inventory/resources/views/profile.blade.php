@@ -179,14 +179,11 @@
                         </div>
                       </div>
                       <div class="form-group row">
-                        <div class="offset-sm-2 col-sm-10">
-                          <div class="checkbox">
-                            <label>
-                                <a href="#" class="btn btn-primary btn-block"><b>Changer mot de passe</b></a>
-                            </label>
-                          </div>
+                        <label for="inputPwd" class="col-sm-2 col-form-label">Mot de passe</label>
+                        <div class="col-sm-10">
+                          <input type="password" class="form-control" id="inputPwd" placeholder="Insérez nouveau mot de passe">
                         </div>
-                      </div>
+                      </div> 
                       <div class="form-group row">
                         <div class="offset-sm-2 col-sm-10">
                           <button type="submit" class="btn btn-danger">Envoyer</button>

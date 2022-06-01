@@ -61,6 +61,12 @@
                         </div>
                     </div>
                     </div>
+                    <div class="input-group mb-3">
+                        <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                        <label class="form-check-label" for="flexSwitchCheckDefault">Toujours avoir en stock</label>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-6">
                 <label class="col-form-label">Emplacement</label>
@@ -88,6 +94,17 @@
                             <option value="3">C</option>
                         </select>
                     </div>
+                    <label for="PerishDate" class="col-form-label">Etat</label>
+                    <div class="input-group mb-3">
+                        <select class="custom-select" aria-label="Default select example">
+                            <option selected>Etat</option>
+                            <option value="1">Neuf</option>
+                            <option value="2">Ouvert</option>
+                            <option value="3">Reconditionné</option>
+                            <option value="3">Occasion</option>
+                            <option value="3">Pour pièces</option>
+                        </select>
+                    </div>
                     <label for="PerishDate" class="col-form-label">Date de péremption (optionnel)</label>
                     <div class="input-group mb-3">
                     <input type="date" class="form-control" id="PerishDate" placeholder="Date de 'péremption'">
@@ -96,12 +113,6 @@
                         <span class="fas fa-calendar-check"></span>
                         </div>
                     </div>
-                    </div>
-                    <div class="input-group mb-3">
-                        <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                        <label class="form-check-label" for="flexSwitchCheckDefault">Toujours avoir en stock</label>
-                        </div>
                     </div>
                 </div>
             </div>

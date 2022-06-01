@@ -34,7 +34,7 @@
             <h1 class="nav">Inventive Inventory</h1>
             <nav class="main-nav">
                 <ul class="nav">
-                    <li><a href="{{url('/Login')}}">Se connecter</a></li>
+                    <li><a href="{{url('/login')}}">Se connecter</a></li>
                 </ul>  
             </nav>
         </header>
