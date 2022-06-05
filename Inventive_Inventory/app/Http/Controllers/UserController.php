@@ -49,4 +49,8 @@ class UserController extends Controller
     public function manage(){
         return view('manage');
     }
+
+    public function hist(){
+        return view('hist');
+    }
 }

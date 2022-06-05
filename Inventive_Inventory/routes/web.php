@@ -49,3 +49,5 @@ Route::get('/sales', [UserController::class,'sales']);
 Route::get('/adduser', [UserController::class,'adduser']);
 
 Route::get('/manage', [UserController::class,'manage']);
+
+Route::get('/hist', [UserController::class,'hist']);
