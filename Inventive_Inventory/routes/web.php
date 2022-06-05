@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AccueilController;
 use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
@@ -20,23 +21,23 @@ use App\Http\Controllers\HomeController;
 
 /* Routes - Home */
 Route::get('/', [HomeController::class,'index']);
-Route::get('/stockIn', [HomeController::class,'in']);
-Route::get('/stockOut', [HomeController::class,'out']);
-Route::get('/login', [HomeController::class,'login']);
-Route::get('/research', [HomeController::class,'research']);
+Route::get('/stockIn', [AccueilController::class,'in']);
+Route::get('/stockOut', [AccueilController::class,'out']);
+Route::get('/login', [AccueilController::class,'login']);
+Route::get('/research', [AccueilController::class,'research']);
 
 /* Routes - User */
-Route::get('/user', [UserController::class,'index']);
+Route::get('/user', [UserController::class,'index'])->middleware('auth');
 
-Route::get('/profile', [UserController::class,'profile']);
+Route::get('/profile', [UserController::class,'profile'])->middleware('auth');
 
-Route::get('/charts', [UserController::class,'charts']);
+Route::get('/charts', [UserController::class,'charts'])->middleware('auth');
 
-Route::get('/stock', [UserController::class,'stock']);
+Route::get('/stock', [UserController::class,'stock'])->middleware('auth');
 
-Route::get('/report', [UserController::class,'report']);
+Route::get('/report', [UserController::class,'report'])->middleware('auth');
 
-Route::get('/logout', [UserController::class,'logout']);
+Route::get('/logout', [UserController::class,'logout'])->middleware('auth');
 
 /* Routes - Admin */
 
@@ -51,3 +52,6 @@ Route::get('/adduser', [UserController::class,'adduser']);
 Route::get('/manage', [UserController::class,'manage']);
 
 Route::get('/hist', [UserController::class,'hist']);
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
