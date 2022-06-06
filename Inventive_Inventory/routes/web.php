@@ -21,10 +21,10 @@ use App\Http\Controllers\HomeController;
 
 /* Routes - Home */
 Route::get('/', [HomeController::class,'index']);
-Route::get('/stockIn', [AccueilController::class,'in']);
-Route::get('/stockOut', [AccueilController::class,'out']);
-Route::get('/login', [AccueilController::class,'login']);
-Route::get('/research', [AccueilController::class,'research']);
+Route::get('/stockIn', [HomeController::class,'in']);
+Route::get('/stockOut', [HomeController::class,'out']);
+Route::get('/login', [HomeController::class,'login']);
+Route::get('/research', [HomeController::class,'research']);
 
 /* Routes - User */
 Route::get('/user', [UserController::class,'index'])->middleware('auth');

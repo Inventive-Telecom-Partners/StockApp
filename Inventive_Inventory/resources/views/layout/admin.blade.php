@@ -141,7 +141,7 @@
                 <a href="{{url('/adduser')}}" class="nav-link {{(app('request')->route()->uri() == 'adduser') ? 'active' : ''}}">
                 <i class="nav-icon fas fa-users"></i>
                 <p>
-                    Ajouter utilisateur
+                    Gérer les utilisateurs
                 </p>
                 </a>
             </li>
