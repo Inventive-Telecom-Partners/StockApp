@@ -30,6 +30,7 @@ Route::get('/stockOut', [HomeController::class,'out']);
 Route::get('/login', [HomeController::class,'login']);
 Route::get('/research', [HomeController::class,'research']);
 
+/* Routes - Admin */
 Route::prefix('/admin')->group(function () {
 
     Route::get('/profil',[App\Http\Controllers\admin\ProfileController::class, 'index']);
@@ -47,19 +48,27 @@ Route::prefix('/admin')->group(function () {
 });
 
 /* Routes - User */
+Route::prefix('/user')->group(function () {
+
+    Route::get('/profil',[App\Http\Controllers\user\ProfileController::class, 'index']);
+    Route::get('/charts', [App\Http\Controllers\user\ChartController::class,'index']);
+    Route::get('/report', [App\Http\Controllers\user\ReportController::class,'index']);
+    Route::get('/stock', [App\Http\Controllers\user\StockController::class,'index']);
+    Route::get('/logout', [App\Http\Controllers\user\UserController::class,'logout']);
+
+    Route::get('/hist', [UserController::class,'hist']);
+
+});
+
+/* Routes - User */
 Route::get('/user', [UserController::class,'index']);
 
-Route::get('/profile', [UserController::class,'profile']);
-
-Route::get('/charts', [UserController::class,'charts']);
-
-Route::get('/stock', [UserController::class,'stock']);
-
-Route::get('/report', [UserController::class,'report']);
-
-Route::get('/logout', [UserController::class,'logout']);
 
 /* Routes - Admin */
 
 Route::get('/admin', [UserController::class,'admin']);
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

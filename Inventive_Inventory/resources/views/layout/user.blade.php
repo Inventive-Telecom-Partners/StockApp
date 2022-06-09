@@ -130,7 +130,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
             <li class="nav-item">
-                <a href="{{url('/profile')}}" class="nav-link {{(app('request')->route()->uri() == 'profile') ? 'active' : ''}}">
+                <a href="{{url('/user/profil')}}" class="nav-link {{(app('request')->route()->uri() == 'user/profil') ? 'active' : ''}}">
                 <i class="nav-icon fas fa-user"></i>
                 <p>
                     Profil
@@ -140,7 +140,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="{{url('/stock')}}" class="nav-link {{(app('request')->route()->uri() == 'stock') ? 'active' : ''}}">
+            <a href="{{url('/user/stock')}}" class="nav-link {{(app('request')->route()->uri() == 'user/stock') ? 'active' : ''}}">
               <i class="nav-icon fas fa-box-open"></i>
               <p>
                 Voir état des stocks
@@ -149,7 +149,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="{{url('/charts')}}" class="nav-link {{(app('request')->route()->uri() == 'charts') ? 'active' : ''}}">
+            <a href="{{url('/user/charts')}}" class="nav-link {{(app('request')->route()->uri() == 'user/charts') ? 'active' : ''}}">
               <i class="nav-icon fas fa-chart-bar"></i>
               <p>
                 Graphiques
@@ -158,7 +158,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="{{url('/report')}}" class="nav-link {{(app('request')->route()->uri() == 'report') ? 'active' : ''}}">
+            <a href="{{url('/user/report')}}" class="nav-link {{(app('request')->route()->uri() == 'user/report') ? 'active' : ''}}">
               <i class="nav-icon fas fa-copy"></i>
               <p>
                 Génération de rapport
@@ -167,7 +167,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="{{url('/logout')}}" class="nav-link {{(app('request')->route()->uri() == 'logout') ? 'active' : ''}}">
+            <a href="{{url('/user/logout')}}" class="nav-link {{(app('request')->route()->uri() == 'user/logout') ? 'active' : ''}}">
               <i class="fa fa-fw fa-power-off"></i>
               <p>
                 Déconnexion
