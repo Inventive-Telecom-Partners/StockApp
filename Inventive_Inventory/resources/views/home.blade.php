@@ -15,7 +15,8 @@
                     @endif
 
                     {{ __('You are logged in!') }}
-                    {{$user = Auth::user()name;}}
+                    {{$user = Auth::user()->FirstName}}
+                    {{$user = Auth::user()->LastName;}}
                 </div>
             </div>
         </div>

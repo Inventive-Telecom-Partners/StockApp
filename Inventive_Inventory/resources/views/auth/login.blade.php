@@ -39,26 +39,6 @@
             </span>
             @enderror
         </div>  
-        <div class="input-group mb-3"> 
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                <label class="form-check-label" for="remember">
-                    {{ __('Se souvenir de moi') }}
-                </label>
-            </div>     
-        </div>
-        <div class="row">
-          <!-- /.col -->
-          <div class="col-12">
-            <button type="submit" class="btn btn-primary btn-block">Se connecter</button>
-            @if (Route::has('password.request'))
-                <a class="btn btn-link" href="{{ route('password.request') }}">
-                    {{ __('Mot de passe oublié?') }}
-                </a>
-            @endif
-          </div>
-          <!-- /.col -->
-        </div>                     
       </form>
     </div>
     <!-- /.card-body -->

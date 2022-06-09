@@ -20,38 +20,46 @@ use App\Http\Controllers\HomeController;
 // });
 
 /* Routes - Home */
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 Route::get('/', [HomeController::class,'index']);
 Route::get('/stockIn', [HomeController::class,'in']);
 Route::get('/stockOut', [HomeController::class,'out']);
 Route::get('/login', [HomeController::class,'login']);
 Route::get('/research', [HomeController::class,'research']);
 
+Route::prefix('/admin')->group(function () {
+
+    Route::get('/profil',[App\Http\Controllers\admin\ProfileController::class, 'index']);
+    Route::get('/adduser', [App\Http\Controllers\admin\UserController::class,'index']);
+    Route::get('/charts', [App\Http\Controllers\admin\ChartController::class,'index']);
+    Route::get('/chartsAdmin', [App\Http\Controllers\admin\ChartController::class,'chartsAdmin']);
+    Route::get('/report', [App\Http\Controllers\admin\ReportController::class,'index']);
+    Route::get('/sales', [App\Http\Controllers\admin\SalesController::class,'index']);
+    Route::get('/manage', [App\Http\Controllers\admin\StockController::class,'manage']);
+    Route::get('/stock', [App\Http\Controllers\admin\StockController::class,'index']);
+    Route::get('/logout', [App\Http\Controllers\admin\AdminController::class,'logout']);
+
+    Route::get('/hist', [UserController::class,'hist']);
+
+});
+
 /* Routes - User */
-Route::get('/user', [UserController::class,'index'])->middleware('auth');
+Route::get('/user', [UserController::class,'index']);
 
-Route::get('/profile', [UserController::class,'profile'])->middleware('auth');
+Route::get('/profile', [UserController::class,'profile']);
 
-Route::get('/charts', [UserController::class,'charts'])->middleware('auth');
+Route::get('/charts', [UserController::class,'charts']);
 
-Route::get('/stock', [UserController::class,'stock'])->middleware('auth');
+Route::get('/stock', [UserController::class,'stock']);
 
-Route::get('/report', [UserController::class,'report'])->middleware('auth');
+Route::get('/report', [UserController::class,'report']);
 
-Route::get('/logout', [UserController::class,'logout'])->middleware('auth');
+Route::get('/logout', [UserController::class,'logout']);
 
 /* Routes - Admin */
 
 Route::get('/admin', [UserController::class,'admin']);
 
-Route::get('/chartsAdmin', [UserController::class,'chartsAdmin']);
-
-Route::get('/sales', [UserController::class,'sales']);
-
-Route::get('/adduser', [UserController::class,'adduser']);
-
-Route::get('/manage', [UserController::class,'manage']);
-
-Route::get('/hist', [UserController::class,'hist']);
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

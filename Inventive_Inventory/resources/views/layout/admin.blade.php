@@ -130,7 +130,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
             <li class="nav-item">
-                <a href="{{url('/profile')}}" class="nav-link {{(app('request')->route()->uri() == 'profile') ? 'active' : ''}}">
+                <a href="{{url('/admin/profil')}}" class="nav-link {{(app('request')->route()->uri() == 'admin/profil') ? 'active' : ''}}">
                 <i class="nav-icon fas fa-user"></i>
                 <p>
                     Profil
@@ -138,7 +138,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{url('/adduser')}}" class="nav-link {{(app('request')->route()->uri() == 'adduser') ? 'active' : ''}}">
+                <a href="{{url('/admin/adduser')}}" class="nav-link {{(app('request')->route()->uri() == 'admin/adduser') ? 'active' : ''}}">
                 <i class="nav-icon fas fa-users"></i>
                 <p>
                     Gérer les utilisateurs
@@ -148,7 +148,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="{{url('/stock')}}" class="nav-link {{(app('request')->route()->uri() == 'stock') ? 'active' : ''}}">
+            <a href="{{url('/admin/stock')}}" class="nav-link {{(app('request')->route()->uri() == 'admin/stock') ? 'active' : ''}}">
               <i class="nav-icon fas fa-box-open"></i>
               <p>
                 Voir état des stocks
@@ -157,7 +157,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="{{url('/manage')}}" class="nav-link {{(app('request')->route()->uri() == 'manage') ? 'active' : ''}}">
+            <a href="{{url('/admin/manage')}}" class="nav-link {{(app('request')->route()->uri() == 'admin/manage') ? 'active' : ''}}">
               <i class="nav-icon fas fa-inbox"></i>
               <p>
                 Gérer les stocks
@@ -166,7 +166,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="{{url('/charts')}}" class="nav-link {{(app('request')->route()->uri() == 'charts') ? 'active' : ''}}">
+            <a href="{{url('/admin/charts')}}" class="nav-link {{(app('request')->route()->uri() == 'admin/charts') ? 'active' : ''}}">
               <i class="nav-icon fas fa-chart-bar"></i>
               <p>
                 Mes Graphiques
@@ -175,7 +175,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="{{url('/chartsAdmin')}}" class="nav-link {{(app('request')->route()->uri() == 'chartsAdmin') ? 'active' : ''}}">
+            <a href="{{url('/admin/chartsAdmin')}}" class="nav-link {{(app('request')->route()->uri() == 'admin/chartsAdmin') ? 'active' : ''}}">
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>
                 Graphiques généraux
@@ -184,7 +184,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="{{url('/report')}}" class="nav-link {{(app('request')->route()->uri() == 'report') ? 'active' : ''}}">
+            <a href="{{url('/admin/report')}}" class="nav-link {{(app('request')->route()->uri() == 'admin/report') ? 'active' : ''}}">
               <i class="nav-icon fas fa-copy"></i>
               <p>
                 Génération de rapport
@@ -193,7 +193,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="{{url('/sales')}}" class="nav-link {{(app('request')->route()->uri() == 'sales') ? 'active' : ''}}">
+            <a href="{{url('/admin/sales')}}" class="nav-link {{(app('request')->route()->uri() == 'admin/sales') ? 'active' : ''}}">
               <i class="nav-icon fas fa-dollar-sign"></i>
               <p>
                 Revente ebay
@@ -202,7 +202,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="{{url('/logout')}}" class="nav-link {{(app('request')->route()->uri() == 'logout') ? 'active' : ''}}">
+            <a href="{{url('/admin/logout')}}" class="nav-link {{(app('request')->route()->uri() == 'admin/logout') ? 'active' : ''}}">
               <i class="fa fa-fw fa-power-off"></i>
               <p>
                 Déconnexion
