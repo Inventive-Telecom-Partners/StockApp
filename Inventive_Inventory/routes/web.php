@@ -34,7 +34,7 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 /* Routes - Admin */
-Route::prefix('/admin')->group(function () {
+Route::prefix('/admin')->middleware(['auth'])->group(function () {
 
     Route::get('/profil',[App\Http\Controllers\admin\ProfileController::class, 'index']);
     Route::get('/adduser', [App\Http\Controllers\admin\UserController::class,'index']);

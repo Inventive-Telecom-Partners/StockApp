@@ -28,22 +28,13 @@
 
         </div>
         <div class="card-body">
-            <form style="text-align:center">
+            <form style="text-align:center" method="POST" action="{{ route('logout') }}">
+            @csrf
               <div class="form-group">
-              <label for="inputDescription">Êtes-vous sûr de vouloir vous déconnecter?</label>
-              <div class="form-check">
-                  <input class="form-check-input" type="radio" name="radioType" id="DecoNRadio" checked>
-                  <label class="form-check-label" for="DecoNRadio">
-                    Non
-                  </label>
+                <label for="inputDescription">Êtes-vous sûr de vouloir vous déconnecter?</label>
+                <div class="row justify-content-center" >
+                  <input type="submit" value="Déconnexion" class="btn btn-danger ">
                 </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="radioType" id="DecoORadio">
-                  <label class="form-check-label" for="DecoORadio">
-                    Oui
-                  </label>
-                </div>
-                <input type="submit" value="Déconnexion" class="btn btn-danger ">
               </div>
             </form>
         </div>
