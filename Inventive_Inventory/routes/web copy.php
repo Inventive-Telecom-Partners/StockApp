@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\AccueilController;
+use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,25 +15,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('accueil');
-});
-Route::get('/stockIn', function () {
-    return view('stockIn');
-});
-Route::get('/stockOut', function () {
-    return view('stockOut');
-});
-Route::get('/research', function () {
-    return view('research');
-});
+// Route::get('/', function () {
+//     return view('home');
+// });
 
+/* Routes - Home */
+Auth::routes();
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-require __DIR__.'/auth.php';
+Route::get('/', [HomeController::class,'index']);
+Route::get('/stockIn', [HomeController::class,'in']);
+Route::get('/stockOut', [HomeController::class,'out']);
+Route::get('/login', [HomeController::class,'login']);
+Route::get('/research', [HomeController::class,'research']);
 
 /* Routes - Admin */
 Route::prefix('/admin')->group(function () {
@@ -46,10 +43,7 @@ Route::prefix('/admin')->group(function () {
     Route::get('/stock', [App\Http\Controllers\admin\StockController::class,'index']);
     Route::get('/logout', [App\Http\Controllers\admin\AdminController::class,'logout']);
 
-    Route::get('/hist', function () {
-        return view('hist');
-    });
-
+    Route::get('/hist', [UserController::class,'hist']);
 
 });
 
@@ -62,8 +56,16 @@ Route::prefix('/user')->group(function () {
     Route::get('/stock', [App\Http\Controllers\user\StockController::class,'index']);
     Route::get('/logout', [App\Http\Controllers\user\UserController::class,'logout']);
 
-    Route::get('/hist', function () {
-        return view('hist');
-    });
+    Route::get('/hist', [UserController::class,'hist']);
 
 });
+
+/* Routes - User */
+Route::get('/user', [UserController::class,'index']);
+
+
+/* Routes - Admin */
+
+Route::get('/admin', [UserController::class,'admin']);
+
+

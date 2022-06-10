@@ -32,11 +32,19 @@
                 <img src="{{asset('assets/dist/img/logo/itpStock.png')}}" alt="Logo" style="height : 7vmax">
             </a>
             <h1 class="nav">Inventive Inventory</h1>
-            <nav class="main-nav">
-                <ul class="nav">
-                    <li><a href="{{url('/login')}}">Se connecter</a></li>
-                </ul>  
-            </nav>
+            @if (Route::has('login'))
+                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                    @auth
+                        <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Menu</a>
+                    @else
+                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Se connecter</a>
+
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">S'enregistrer</a>
+                        @endif
+                    @endauth
+                </div>
+            @endif
         </header>
     </section>
     <!-- Section Header end -->
