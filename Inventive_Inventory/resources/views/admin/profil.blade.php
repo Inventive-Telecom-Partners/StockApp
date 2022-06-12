@@ -33,17 +33,21 @@
                        alt="User profile picture">
                 </div>
 
-                <h3 class="profile-username text-center">Nina Mcintire</h3>
+                <h3 class="profile-username text-center">{{auth()->user()->Name}}</h3>
 
                 <!-- Insérez ici son niveau d'accès (admin ou user voir même si y a le temps par groupe : techos, sales, etc) depuis la base de donnée -->
                 <p class="text-muted text-center">Utilisateur</p>
 
                 <ul class="list-group list-group-unbordered mb-3">
                   <li class="list-group-item">
-                    <b>Email</b> <a class="float-right">A recup de la bdd</a>
+                    <b>Email</b> <a class="float-right">{{auth()->user()->email}}</a>
                   </li>
                   <li class="list-group-item">
-                    <b>Tag</b> <a class="float-right">A recup de la bdd</a>
+                    @if (auth()->user()->badge)
+                      <b>Tag</b> <a class="float-right">{{auth()->user()->badge}}</a>
+                    @else
+                      <b>Tag</b> <a class="float-right">Aucun</a>
+                    @endif
                   </li>
                   <li class="list-group-item">
                     <b>I/O du jour</b> <a class="float-right">A recup de la bdd</a>
