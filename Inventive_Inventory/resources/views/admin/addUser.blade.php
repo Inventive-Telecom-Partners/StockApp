@@ -47,19 +47,19 @@
               <div class="card-body">
                 <div class="tab-content">
                   <div class="active tab-pane" id="addUser">
-                  <form>
+                  <form action="/admin/create" method= "post">
+                  @csrf
                     <div class="row">
                       <div class="col">
                         <div class="form-group">
                           <label for="inputName">Nom</label>
-                          <input type="text" id="inputName" class="form-control" placeholder="Nom de l'utilisateur">
+                          <input type="text" id="inputName" class="form-control" placeholder="Nom de l'utilisateur" name="Name">
                         </div>
                       </div>
-
                       <div class="col">
                         <div class="form-group">
-                          <label for="inputSurename">Prénom</label>
-                          <input type="text" id="inputSurename" class="form-control" placeholder="Prénom de l'utilisateur">
+                          <label for="inputBadge">Badge</label>
+                          <input type="text" id="inputBadge" class="form-control" placeholder="Badge/Tag de l'utilisateur" name="Badge">
                         </div>
                       </div>
                     </div>
@@ -67,14 +67,14 @@
                       <div class="col">
                         <div class="form-group">
                           <label for="inputEmail">Email</label>
-                          <input type="email" class="form-control" id="inputEmail" placeholder="Insérez email utilisateur">
+                          <input type="email" class="form-control" id="inputEmail" placeholder="Insérez email utilisateur" name="email">
                         </div>
                       </div>
 
                       <div class="col">
                         <div class="form-group">
                           <label for="inputPwd">Mot de passe</label>
-                          <input type="password" class="form-control" id="inputPwd" placeholder="Insérez nouveau mot de passe">
+                          <input type="password" class="form-control" id="inputPwd" placeholder="Insérez nouveau mot de passe" name="password">
                         </div>
                       </div>
                     </div>
@@ -84,7 +84,7 @@
                       <input type="file" class="form-control" placeholder="Image">
                     </div>
 
-                    <a href="{{url('/adduser')}}" class="btn btn-secondary">Annulé</a>
+                    <a href="{{url('/admin/adduser')}}" class="btn btn-secondary">Annulé</a>
                     <input type="submit" value="Ajouter" class="btn btn-success float-right">
                   </form>
 
@@ -97,9 +97,9 @@
                         <label for="inputChUser">Utilisateur à changer</label>
                         <select id="inputChUser" class="form-control custom-select">
                           <option selected disabled>Sélectionner un utilisateur</option>
-                          <option>USER1</option>
-                          <option>USER2</option>
-                          <option>USER3</option>
+                          @foreach($usersData as $i)
+                            <option value="{{$i->id}}">{{$i->Name}}</option>
+                          @endforeach
                         </select>
                       </div>
                       <div class="row">
@@ -150,9 +150,9 @@
                         <label for="inputChUser">Utilisateur à supprimer</label>
                         <select id="inputChUser" class="form-control custom-select">
                           <option selected disabled>Sélectionner un utilisateur</option>
-                          <option>USER1</option>
-                          <option>USER2</option>
-                          <option>USER3</option>
+                          @foreach($usersData as $i)
+                            <option value="{{$i->id}}">{{$i->Name}}</option>
+                          @endforeach
                         </select>
                       </div>
                       <a href="{{url('/adduser')}}" class="btn btn-secondary">Annulé</a>
@@ -165,7 +165,6 @@
                     <div class="row">
                     @foreach($usersData as $i)
                       <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
-                        
                           <div class="card bg-light d-flex flex-fill">
                             <div class="card-header text-muted border-bottom-0">
                               Type d'utilisateur(user/admin)
@@ -193,7 +192,6 @@
                               </div>
                             </div>
                           </div>
-                        
                       </div>
                       @endforeach
                     </div>

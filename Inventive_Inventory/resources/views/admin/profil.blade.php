@@ -43,8 +43,8 @@
                     <b>Email</b> <a class="float-right">{{auth()->user()->email}}</a>
                   </li>
                   <li class="list-group-item">
-                    @if (auth()->user()->badge)
-                      <b>Tag</b> <a class="float-right">{{auth()->user()->badge}}</a>
+                    @if (auth()->user()->Badge)
+                      <b>Tag</b> <a class="float-right">{{auth()->user()->Badge}}</a>
                     @else
                       <b>Tag</b> <a class="float-right">Aucun</a>
                     @endif
@@ -161,13 +161,7 @@
                       <div class="form-group row">
                         <label for="inputName" class="col-sm-2 col-form-label">Nom</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputName" placeholder="Insérez votre nom de famille">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="inputName2" class="col-sm-2 col-form-label">Prénom</label>
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputName2" placeholder="Insérez votre prénom">
+                          <input type="text" class="form-control" id="inputName" placeholder="Insérez votre nom">
                         </div>
                       </div>
                       <div class="form-group row">

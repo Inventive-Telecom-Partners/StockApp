@@ -37,7 +37,10 @@ require __DIR__.'/auth.php';
 Route::prefix('/admin')->middleware(['auth'])->group(function () {
 
     Route::get('/profil',[App\Http\Controllers\admin\ProfileController::class, 'index']);
+
     Route::get('/adduser', [App\Http\Controllers\admin\UserController::class,'index']);
+    Route::post('/create',[App\Http\Controllers\admin\UserController::class,'insert']);
+
     Route::get('/charts', [App\Http\Controllers\admin\ChartController::class,'index']);
     Route::get('/chartsAdmin', [App\Http\Controllers\admin\ChartController::class,'chartsAdmin']);
     Route::get('/report', [App\Http\Controllers\admin\ReportController::class,'index']);
