@@ -89,6 +89,19 @@
                         <input type="file" class="form-control" placeholder="Image">
                       </div>
 
+                      <div class="form-group">
+                        <label for="inputRole">Rôle de l'utilisateur</label>
+                        <select id="inputRole" class="form-control custom-select">
+                          @foreach ($roleData as $role)
+                            @if($role->Role_Name == $user_role[0]->Role_Name)
+                            <option value="{{$role->id}}" selected>{{$role->Role_Name}}</option>
+                            @else
+                            <option value="{{$role->id}}">{{$role->Role_Name}}</option>
+                            @endif
+                          @endforeach
+                        </select>
+                    </div>
+
                       <a href="{{url('/adduser')}}" class="btn btn-secondary">Annulé</a>
                       <input type="submit" value="Modifier" class="btn btn-success float-right">
                     </form>

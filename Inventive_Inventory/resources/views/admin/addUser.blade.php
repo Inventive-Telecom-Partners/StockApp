@@ -78,8 +78,18 @@
                     </div>
                     
                     <div class="form-group">
-                      <label for="inputStatus">Photo de l'utilisateur</label>
-                      <input type="file" class="form-control" placeholder="Image">
+                      <label for="inputPicture">Photo de l'utilisateur</label>
+                      <input type="file" id="inputPicture" class="form-control" placeholder="Image">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="inputRole">Rôle de l'utilisateur</label>
+                      <select id="inputRole" class="form-control custom-select">
+                          <option selected disabled>Sélectionner un rôle</option>
+                          @foreach ($roleData as $role)
+                            <option value="{{$role->id}}">{{$role->Role_Name}}</option>
+                          @endforeach
+                        </select>
                     </div>
 
                     <a href="{{url('/admin/adduser')}}" class="btn btn-secondary">Annulé</a>
@@ -95,7 +105,7 @@
                       <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
                           <div class="card bg-light d-flex flex-fill">
                             <div class="card-header text-muted border-bottom-0">
-                              Type d'utilisateur(user/admin)
+                              {{$user_role[$i->id-1]->Role_Name}}
                             </div>
                             <div class="card-body pt-0">
                               <div class="row">
