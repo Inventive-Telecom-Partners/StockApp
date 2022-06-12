@@ -89,9 +89,6 @@
                   </div>
                   <!-- /.tab-pane addUser-->
 
-
-
-
                   <div class="tab-pane" id="displayUser">
                     <div class="row">
                     @foreach($usersData as $i)

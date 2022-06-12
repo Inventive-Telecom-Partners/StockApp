@@ -37,6 +37,7 @@ require __DIR__.'/auth.php';
 Route::prefix('/admin')->middleware(['auth'])->group(function () {
 
     Route::get('/profil',[App\Http\Controllers\admin\ProfileController::class, 'index']);
+    Route::put('updateMe/{my_id}',[App\Http\Controllers\admin\ProfileController::class,'update']);
 
     Route::get('/adduser', [App\Http\Controllers\admin\UserController::class,'index']);
     Route::post('/create',[App\Http\Controllers\admin\UserController::class,'insert']);

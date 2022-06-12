@@ -44,9 +44,9 @@
                   </li>
                   <li class="list-group-item">
                     @if (auth()->user()->Badge)
-                      <b>Tag</b> <a class="float-right">{{auth()->user()->Badge}}</a>
+                      <b>Badge/Tag</b> <a class="float-right">{{auth()->user()->Badge}}</a>
                     @else
-                      <b>Tag</b> <a class="float-right">Aucun</a>
+                      <b>Badge/Tag</b> <a class="float-right">Aucun</a>
                     @endif
                   </li>
                   <li class="list-group-item">
@@ -157,34 +157,40 @@
                   <!-- /.tab-pane -->
 
                   <div class="tab-pane" id="settings">
-                    <form class="form-horizontal">
-                      <div class="form-group row">
-                        <label for="inputName" class="col-sm-2 col-form-label">Nom</label>
+                    <form action="{{url('admin/updateMe/'.auth()->user()->id)}}" method="post">
+                      @csrf 
+                      @method('PUT')
+                      <div class="form-group">
+                        <label for="inputName">Nom actuel :</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputName" placeholder="Insérez votre nom">
+                          <input type="text" class="form-control" id="inputName" value="{{auth()->user()->Name}}" name="Name">
                         </div>
                       </div>
-                      <div class="form-group row">
-                        <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+                      <div class="form-group">
+                        <label for="inputEmail">Email actuel :</label>
                         <div class="col-sm-10">
-                          <input type="email" class="form-control" id="inputEmail" placeholder="Insérez votre email">
+                          <input type="email" class="form-control" id="inputEmail" value="{{auth()->user()->email}}" name="email">
                         </div>
                       </div>                      
-                      <div class="form-group row">
-                        <label for="inputExperience" class="col-sm-2 col-form-label">Tag</label>
+                      <div class="form-group">
+                        <label for="inputExperience">Badge/Tag actuel :</label>
                         <div class="col-sm-10">
-                          <textarea class="form-control" id="inputExperience" placeholder="Scannez ou insérez manuellement votre numéro d'identification tag"></textarea>
+                          @if(auth()->user()->Badge)
+                            <input class="form-control" id="inputExperience" value="{{auth()->user()->Badge}}" name="Badge">
+                          @else
+                            <input class="form-control" id="inputExperience" placeholder="Scannez ou insérez manuellement votre numéro d'identification tag" name="Badge">
+                          @endif
                         </div>
                       </div>
-                      <div class="form-group row">
-                        <label for="inputPwd" class="col-sm-2 col-form-label">Mot de passe</label>
+                      <div class="form-group">
+                        <label for="inputPwd">Mot de passe</label>
                         <div class="col-sm-10">
-                          <input type="password" class="form-control" id="inputPwd" placeholder="Insérez nouveau mot de passe">
+                          <input type="password" class="form-control" id="inputPwd" placeholder="Insérez nouveau mot de passe" name="password">
                         </div>
                       </div> 
-                      <div class="form-group row">
-                        <div class="offset-sm-2 col-sm-10">
-                          <button type="submit" class="btn btn-danger">Envoyer</button>
+                      <div class="form-group">
+                        <div>
+                          <button type="submit" class="btn btn-success">Modifier</button>
                         </div>
                       </div>
                     </form>
