@@ -39,15 +39,13 @@
               <div class="card-header p-2">
                 <ul class="nav nav-pills">
                   <li class="nav-item"><a class="nav-link active" href="#addUser" data-toggle="tab">Ajouter utilisateur</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#changeUser" data-toggle="tab">Modifier utilisateur</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#deleteUser" data-toggle="tab">Supprimer utilisateur</a></li>
                   <li class="nav-item"><a class="nav-link" href="#displayUser" data-toggle="tab">Afficher utilisateurs</a></li>
                 </ul>
               </div><!-- /.card-header -->
               <div class="card-body">
                 <div class="tab-content">
                   <div class="active tab-pane" id="addUser">
-                  <form action="/admin/create" method= "post">
+                  <form action="/admin/create" method="post">
                   @csrf
                     <div class="row">
                       <div class="col">
@@ -91,75 +89,8 @@
                   </div>
                   <!-- /.tab-pane addUser-->
 
-                  <div class="tab-pane" id="changeUser">
-                    <form>
-                      <div class="form-group">
-                        <label for="inputChUser">Utilisateur à changer</label>
-                        <select id="inputChUser" class="form-control custom-select">
-                          <option selected disabled>Sélectionner un utilisateur</option>
-                          @foreach($usersData as $i)
-                            <option value="{{$i->id}}">{{$i->Name}}</option>
-                          @endforeach
-                        </select>
-                      </div>
-                      <div class="row">
-                        <div class="col">
-                          <div class="form-group">
-                            <label for="inputName">Nom</label>
-                            <input type="text" id="inputName" class="form-control" placeholder="Nom de l'utilisateur">
-                          </div>
-                        </div>
 
-                        <div class="col">
-                          <div class="form-group">
-                            <label for="inputSurename">Prénom</label>
-                            <input type="text" id="inputSurename" class="form-control" placeholder="Prénom de l'utilisateur">
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col">
-                          <div class="form-group">
-                            <label for="inputEmail">Email</label>
-                            <input type="email" class="form-control" id="inputEmail" placeholder="Insérez email utilisateur">
-                          </div>
-                        </div>
 
-                        <div class="col">
-                          <div class="form-group">
-                            <label for="inputPwd">Mot de passe</label>
-                            <input type="password" class="form-control" id="inputPwd" placeholder="Insérez nouveau mot de passe">
-                          </div>
-                        </div>
-                      </div>
-                      
-                      <div class="form-group">
-                        <label for="inputStatus">Photo de l'utilisateur</label>
-                        <input type="file" class="form-control" placeholder="Image">
-                      </div>
-
-                      <a href="{{url('/adduser')}}" class="btn btn-secondary">Annulé</a>
-                      <input type="submit" value="Modifier" class="btn btn-success float-right">
-                    </form>
-                  </div>
-                  <!-- /.tab-pane changeUser -->
-
-                  <div class="tab-pane" id="deleteUser">
-                    <form>
-                      <div class="form-group">
-                        <label for="inputChUser">Utilisateur à supprimer</label>
-                        <select id="inputChUser" class="form-control custom-select">
-                          <option selected disabled>Sélectionner un utilisateur</option>
-                          @foreach($usersData as $i)
-                            <option value="{{$i->id}}">{{$i->Name}}</option>
-                          @endforeach
-                        </select>
-                      </div>
-                      <a href="{{url('/adduser')}}" class="btn btn-secondary">Annulé</a>
-                      <input type="submit" value="Supprimer" class="btn btn-success float-right">
-                    </form>
-                  </div>
-                  <!-- /.tab-pane -->
 
                   <div class="tab-pane" id="displayUser">
                     <div class="row">
@@ -189,6 +120,14 @@
                                   <img src="{{asset('assets/dist/img/users/blank_profile.png')}}" alt="user-avatar" class="img-circle img-fluid">
                                   @endif
                                 </div>
+                              </div>
+                              <div class="row justify-content-between" style="margin-top :2em;">
+                                  <a href="{{ url ('admin/edit/'.$i->id)}}" class="btn btn-success">Modifier</a>
+                                  <form action="{{ url ('admin/delete/'.$i->id)}}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="submit" value="Supprimer" class="btn btn-danger">
+                                  </form>
                               </div>
                             </div>
                           </div>

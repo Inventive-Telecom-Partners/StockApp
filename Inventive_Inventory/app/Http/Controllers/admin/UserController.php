@@ -26,11 +26,24 @@ class UserController extends Controller
         return redirect()->back();
     }
 
-    public function delete(Request $request){
-        $id = $request->input('id');
-        DB::table('users')->insert($id);
-        return redirect('/admin/adduser')->with('alert', 'Form Data Has Been Inserted');
+    public function delete($user_id){
+        $id = DB::table('users')->where('id',$user_id)->delete();
+        return redirect('/admin/adduser')->with('message', 'Form Data Has Been Inserted');
+    }
 
+    public function edit($user_id){
+        $user = DB::table('users')->where('id',$user_id)->first();
+        return view('admin/editUser',['user'=>$user]);
+    }
+
+    public function update(Request $request, $user_id){
+        $user = DB::table('users')->where('id',$user_id)->update([
+            'Name' => $request['Name'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
+            'Badge' => $request['Badge']
+        ]);
+        return redirect("/admin/adduser");
     }
 
 }

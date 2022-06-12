@@ -40,6 +40,10 @@ Route::prefix('/admin')->middleware(['auth'])->group(function () {
 
     Route::get('/adduser', [App\Http\Controllers\admin\UserController::class,'index']);
     Route::post('/create',[App\Http\Controllers\admin\UserController::class,'insert']);
+    Route::get('/edit/{user_id}',[App\Http\Controllers\admin\UserController::class,'edit']);
+    Route::put('updateUser/{user_id}',[App\Http\Controllers\admin\UserController::class,'update']);
+    Route::delete('/delete/{user_id}',[App\Http\Controllers\admin\UserController::class,'delete']);
+    
 
     Route::get('/charts', [App\Http\Controllers\admin\ChartController::class,'index']);
     Route::get('/chartsAdmin', [App\Http\Controllers\admin\ChartController::class,'chartsAdmin']);
