@@ -32,11 +32,16 @@
                        src="{{asset('assets/dist/img/user4-128x128.jpg')}}"
                        alt="User profile picture">
                 </div>
+                <!-- <ul>
+                  @foreach ($roleData as $role)
+                    <li>{{$role->Role_Name}} : {{$role->Description}}</li>
+                  @endforeach
+                </ul> -->
 
                 <h3 class="profile-username text-center">{{auth()->user()->Name}}</h3>
 
                 <!-- Insérez ici son niveau d'accès (admin ou user voir même si y a le temps par groupe : techos, sales, etc) depuis la base de donnée -->
-                <p class="text-muted text-center">Utilisateur</p>
+                <p class="text-muted text-center">{{$user_role[0]->Role_Name}}</p>
 
                 <ul class="list-group list-group-unbordered mb-3">
                   <li class="list-group-item">
