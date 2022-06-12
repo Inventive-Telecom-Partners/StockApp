@@ -10,9 +10,16 @@ class Job extends Model
     use HasFactory;
 
     protected $table = "job";
+    protected $primaryKey = "id";
 
     protected $fillable= [
         'Job_Name',
         'Description'
     ];
+    /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
+    public $timestamps = false;
 }
