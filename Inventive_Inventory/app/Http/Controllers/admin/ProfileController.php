@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 use App\Models\Role;
+use App\Models\Job;
 
 class ProfileController extends Controller
 {
@@ -17,7 +18,10 @@ class ProfileController extends Controller
         $user_auth = Auth::user()->id;
         $user_role = DB::table("users")->join('change_role', 'users.id', '=', 'change_role.idUser')->join('role','change_role.idRole', '=','role.id')->where('users.id',$user_auth)->get(['Role_Name']);
         $roleData = Role::all();
-        return view('admin/profil', ['roleData'=>$roleData,'user_role'=>$user_role]);
+        $jobData = Job::all();
+        $user_job = DB::table("users")->join('change_job', 'users.id', '=', 'change_job.idUser')->join('job','change_job.idJob', '=','job.id')->where('users.id',$user_auth)->get(['Job_Name']);
+
+        return view('admin/profil', ['roleData'=>$roleData,'user_role'=>$user_role,'jobData'=>$jobData,'user_job'=>$user_job]);
     }
 
     public function update(Request $request, $my_id){

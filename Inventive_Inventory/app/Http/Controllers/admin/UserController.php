@@ -16,9 +16,10 @@ class UserController extends Controller
     public function index(){
         $usersData= User::all();
         $roleData = Role::all();
-        $jobData =DB::table('job')->get();
         $user_role = DB::table("users")->join('change_role', 'users.id', '=', 'change_role.idUser')->join('role','change_role.idRole', '=','role.id')->get();
-        return view('admin/addUser',['usersData'=>$usersData,'roleData'=>$roleData,'user_role'=>$user_role,'jobData'=>$jobData]);
+        $jobData =DB::table('job')->get();
+        $user_job = DB::table("users")->join('change_job', 'users.id', '=', 'change_job.idUser')->join('job','change_job.idJob', '=','job.id')->get();
+        return view('admin/addUser',['usersData'=>$usersData,'roleData'=>$roleData,'user_role'=>$user_role,'jobData'=>$jobData,'user_job'=>$user_job]);
     }
 
     public function insert(Request $request){
@@ -57,6 +58,7 @@ class UserController extends Controller
         DB::table("notification")->insert($notifi);
         DB::table('users')->where('id',$user_id)->delete();
         DB::table('change_role')->where('idUser',$user_id)->delete();
+        DB::table('change_job')->where('idUser',$user_id)->delete();
         return redirect('/admin/adduser')->with('message', "L'utilisateur a été supprimé");
     }
 

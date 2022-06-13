@@ -41,7 +41,7 @@
                 <h3 class="profile-username text-center">{{auth()->user()->Name}}</h3>
 
                 <!-- Insérez ici son niveau d'accès (admin ou user voir même si y a le temps par groupe : techos, sales, etc) depuis la base de donnée -->
-                <p class="text-muted text-center">{{$user_role[0]->Role_Name}}</p>
+                <p class="text-muted text-center">{{$user_role[0]->Role_Name}} - {{$user_job[0]->Job_Name}}</p>
 
                 <ul class="list-group list-group-unbordered mb-3">
                   <li class="list-group-item">
