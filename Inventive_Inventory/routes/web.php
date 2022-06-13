@@ -44,14 +44,16 @@ Route::prefix('/admin')->middleware(['auth'])->group(function () {
     Route::get('/edit/{user_id}',[App\Http\Controllers\admin\UserController::class,'edit']);
     Route::put('updateUser/{user_id}',[App\Http\Controllers\admin\UserController::class,'update']);
     Route::delete('/delete/{user_id}',[App\Http\Controllers\admin\UserController::class,'delete']);
-    
 
+    Route::get('/stock', [App\Http\Controllers\admin\StockController::class,'index']);
+    Route::get('/manage', [App\Http\Controllers\admin\StockController::class,'manage']);
+    Route::post('/createStock',[App\Http\Controllers\admin\StockController::class,'insert']);
+    
     Route::get('/charts', [App\Http\Controllers\admin\ChartController::class,'index']);
     Route::get('/chartsAdmin', [App\Http\Controllers\admin\ChartController::class,'chartsAdmin']);
+
     Route::get('/report', [App\Http\Controllers\admin\ReportController::class,'index']);
-    Route::get('/sales', [App\Http\Controllers\admin\SalesController::class,'index']);
-    Route::get('/manage', [App\Http\Controllers\admin\StockController::class,'manage']);
-    Route::get('/stock', [App\Http\Controllers\admin\StockController::class,'index']);
+    Route::get('/sales', [App\Http\Controllers\admin\SalesController::class,'index']); 
     Route::get('/logout', [App\Http\Controllers\admin\AdminController::class,'logout']);
 
     Route::get('/hist', function () {
