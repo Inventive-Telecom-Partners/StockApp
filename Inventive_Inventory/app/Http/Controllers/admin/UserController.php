@@ -28,7 +28,7 @@ class UserController extends Controller
         $password = Hash::make($request->input('password'));
         $Badge = $request->input('Badge');
 
-        $data = array('Name'=>$Name,'email'=>$email,'password'=>$password,'Badge'=>$Badge);
+        $data = array('Name'=>$Name,'email'=>$email,'password'=>$password,'Badge'=>$Badge,'created_at'=>date("Y-m-d H:i:s", strtotime('+2 hours')));
         //$user_role = DB::table("users")->join('change_role', 'users.id', '=', 'change_role.idUser')->join('role','change_role.idRole', '=','role.id')->where('users.id',$user_auth)->get(['Role_Name']);
         DB::table('users')->insert($data);
 
@@ -74,7 +74,8 @@ class UserController extends Controller
             'Name' => $request['Name'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
-            'Badge' => $request['Badge']
+            'Badge' => $request['Badge'],
+            'updated_at'=>date("Y-m-d H:i:s", strtotime('+2 hours'))
         ]);
         $Name = DB::table('users')->where('id',$user_id)->get('Name')[0]->Name;
         $notifDesc="L'utilisateur " . $Name . " a été modifié par " . Auth::user()->Name;
