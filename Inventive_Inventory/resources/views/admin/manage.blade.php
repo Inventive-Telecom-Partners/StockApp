@@ -39,10 +39,14 @@
               <div class="card-header p-2">
                 <ul class="nav nav-pills">
                   <li class="nav-item"><a class="nav-link active" href="#addStock" data-toggle="tab">Ajouter stock</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#changeStock" data-toggle="tab">Modifier stock</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#deleteStock" data-toggle="tab">Supprimer stock</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#addShelf" data-toggle="tab">Ajouter étagère</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#addLevel" data-toggle="tab">Ajouter étage</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#displayStock" data-toggle="tab">Afficher les stocks</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#displayShelf" data-toggle="tab">Afficher les étagères</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#displayLevel" data-toggle="tab">Afficher les étages</a></li>
                 </ul>
               </div><!-- /.card-header -->
+
               <div class="card-body">
                 <div class="tab-content">
                   <div class="active tab-pane" id="addStock">
@@ -57,22 +61,6 @@
                         <label for="inputDesc">Description</label>
                         <input type="text" id="inputDesc" class="form-control" placeholder="Description du stock" name="Description">
                       </div>
-                      
-                      <!-- <div class="row">
-                        <div class="col">
-                          <div class="form-group">
-                            <label for="inputEtagere">Nombre d'étagères (1 à 30) </label>
-                            <input type="number" class="form-control" id="inputEtagere" placeholder="Nombre d'étagères" min="1" max="30">
-                          </div>
-                        </div>
-
-                        <div class="col">
-                          <div class="form-group">
-                            <label for="inputEtage">Nombre d'étages (1 à 15) </label>
-                            <input type="number" class="form-control" id="inputEtage" placeholder="Nombre d'étages" min="1" max="15">
-                          </div>
-                        </div>
-                      </div> -->
 
                     <a href="{{url('/admin/manage')}}" class="btn btn-secondary">Annulé</a>
                     <input type="submit" value="Ajouter" class="btn btn-success float-right">
@@ -123,27 +111,219 @@
                   </div>
                   <!-- /.tab-pane changeStock -->
 
-                  <div class="tab-pane" id="deleteStock">
-                    <form>
-                      <div class="form-group">
-                        <label for="inputDelStock">Stock à supprimer</label>
-                        <select id="inputDelStock" class="form-control custom-select">
-                          <option selected disabled>Sélectionner un stock</option>
-                          @foreach ($stockData as $stock)
-                            @if($stock->Stock_Name == "noStock")
-                            @else
-                            <option value="{{$stock->id}}">{{$stock->Stock_Name}}</option>
-                            @endif
-                          @endforeach
-                        </select>
-                        <p><i>*Les objets du stock supprimé se retrouveront dans le stock par défaut : "noStock"*</i></p>
-                      </div>
-                      <a href="{{url('/admin/manage')}}" class="btn btn-secondary">Annulé</a>
-                      <input type="submit" value="Supprimer" class="btn btn-success float-right">
-                    </form>
-                  </div>
-                  <!-- /.tab-pane -->
 
+
+
+
+                  <div class="tab-pane" id="addShelf">
+                    <form action="/admin/createShelf" method="post">
+                    @csrf
+
+                      <div class="form-group">
+                        <label for="inputShelfStock">Créer étagère pour le stock :</label>
+                        <select id="inputShelfStock" class="form-control custom-select">
+                          <option selected disabled>Sélectionner un stock</option>
+                            @foreach ($stockData as $stock)
+                              @if($stock->Stock_Name == "noStock")
+                              @else
+                              <option value="{{$stock->id}}">{{$stock->Stock_Name}}</option>
+                              @endif
+                            @endforeach
+                        </select>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="inputShelfName">Nom</label>
+                        <input type="text" id="inputShelfName" class="form-control" placeholder="Nom de l'étagère" name="Shelf_Name">
+                      </div>
+
+                      <div class="form-group">
+                        <label for="inputShelfDesc">Description</label>
+                        <input type="text" id="inputShelfDesc" class="form-control" placeholder="Description de l'étagère" name="Description">
+                      </div>
+
+                      <a href="{{url('/admin/manage')}}" class="btn btn-secondary">Annulé</a>
+                      <input type="submit" value="Ajouter" class="btn btn-success float-right">
+                    </form>
+
+                  </div>
+                  <!-- /.tab-pane addShelf-->
+
+                  <div class="tab-pane" id="addLevel">
+                    <form action="/admin/createLevel" method="post">
+                    @csrf
+
+                      <div class="form-group">
+                        <label for="inputLevelStock">Créer étage pour le stock :</label>
+                        <select id="inputLevelStock" class="form-control custom-select">
+                          <option selected disabled>Sélectionner un stock</option>
+                            @foreach ($stockData as $stock)
+                              @if($stock->Stock_Name == "noStock")
+                              @else
+                              <option value="{{$stock->id}}">{{$stock->Stock_Name}}</option>
+                              @endif
+                            @endforeach
+                        </select>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="inputLevelShelf">Créer étage pour l'étagère :</label>
+                        <select id="inputLevelShelf" class="form-control custom-select">
+                          <option selected disabled>Sélectionner une étagère</option>
+                            @foreach ($shelfData as $shelf)
+                              @if($shelf->Shelf_Name == "noShelf")
+                              @else
+                              <option value="{{$stock->id}}">{{$shelf->Shelf_Name}}</option>
+                              @endif
+                            @endforeach
+                        </select>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="inputLevelName">Nom</label>
+                        <input type="text" id="inputLevelName" class="form-control" placeholder="Nom de l'étage" name="Level_Name">
+                      </div>
+
+                      <div class="form-group">
+                        <label for="inputLevelDesc">Description</label>
+                        <input type="text" id="inputLevelDesc" class="form-control" placeholder="Description de l'étage" name="Description">
+                      </div>
+
+                      <a href="{{url('/admin/manage')}}" class="btn btn-secondary">Annulé</a>
+                      <input type="submit" value="Ajouter" class="btn btn-success float-right">
+                    </form>
+
+                  </div>
+                  <!-- /.tab-pane addLevel-->
+
+                  <div class="tab-pane" id="displayStock">
+                    <!-- *Les objets du stock supprimé se retrouveront dans le stock par défaut : "noStock"* -->
+                    @foreach($stockData as $stock)
+                    @if($stock->Stock_Name == "noStock")
+                    @else
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="card">
+                          <div class="card-header">
+                            <div class="row justify-content-between">
+                              <div class="col">
+                                <h3 class="card-title"><b>{{$stock->Stock_Name}}</b></h3>
+                              </div>
+                              <div class="row">
+                                <div class="col">
+                                  <a href="{{ url ('admin/edit/')}}" class="btn btn-success">Modifier</a>
+                                </div>
+                                <div class="col">
+                                  <form action="{{ url ('admin/delete/')}}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="submit" value="Supprimer" class="btn btn-danger">
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="card-body">
+                            <div class="row">
+                              <p>{{$stock->Description}}</p>
+                            </div>
+                          </div>
+                          <!-- /.card-header -->
+                        </div>
+                        <!-- /.card -->
+                      </div>
+                    </div>
+                    <!-- /.row -->
+                    @endif
+                    @endforeach
+                  </div>
+                  <!-- /.tab-pane displayStock-->
+
+                  <div class="tab-pane" id="displayShelf">
+                    <!-- *Les objets du stock supprimé se retrouveront dans le stock par défaut : "noStock"* -->
+                    @foreach($shelfData as $shelf)
+                    @if($shelf->Shelf_Name == "noShelf")
+                    @else
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="card">
+                          <div class="card-header">
+                            <div class="row justify-content-between">
+                              <div class="col">
+                                <h3 class="card-title"><b>{{$shelf->Shelf_Name}}</b></h3>
+                              </div>
+                              <div class="row">
+                                <div class="col">
+                                  <a href="{{ url ('admin/edit/')}}" class="btn btn-success">Modifier</a>
+                                </div>
+                                <div class="col">
+                                  <form action="{{ url ('admin/delete/')}}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="submit" value="Supprimer" class="btn btn-danger">
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="card-body">
+                            <div class="row">
+                              <p>{{$shelf->Description}}</p>
+                            </div>
+                          </div>
+                          <!-- /.card-header -->
+                        </div>
+                        <!-- /.card -->
+                      </div>
+                    </div>
+                    <!-- /.row -->
+                    @endif
+                    @endforeach
+                  </div>
+                  <!-- /.tab-pane displayShelf -->
+
+                  <div class="tab-pane" id="displayLevel">
+                    <!-- *Les objets du stock supprimé se retrouveront dans le stock par défaut : "noStock"* -->
+                    @foreach($levelData as $level)
+                    @if($level->Level_Name == "noLevel")
+                    @else
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="card">
+                          <div class="card-header">
+                            <div class="row justify-content-between">
+                              <div class="col">
+                                <h3 class="card-title"><b>{{$level->Level_Name}}</b></h3>
+                              </div>
+                              <div class="row">
+                                <div class="col">
+                                  <a href="{{ url ('admin/edit/')}}" class="btn btn-success">Modifier</a>
+                                </div>
+                                <div class="col">
+                                  <form action="{{ url ('admin/delete/')}}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="submit" value="Supprimer" class="btn btn-danger">
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="card-body">
+                            <div class="row">
+                              <p>{{$level->Description}}</p>
+                            </div>
+                          </div>
+                          <!-- /.card-header -->
+                        </div>
+                        <!-- /.card -->
+                      </div>
+                    </div>
+                    <!-- /.row -->
+                    @endif
+                    @endforeach
+                  </div>
+                  <!-- /.tab-pane displayLevel-->
 
                 </div>
                 <!-- /.tab-content -->
