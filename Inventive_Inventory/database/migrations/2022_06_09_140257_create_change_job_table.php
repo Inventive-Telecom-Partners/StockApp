@@ -15,12 +15,10 @@ class CreateChangeJobTable extends Migration
     {
         Schema::create('change_job', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('idNotif')->index();
             $table->unsignedBigInteger('idUser')->index();
             $table->unsignedBigInteger('idJob')->index();
             $table->timestamp('created_at');
 
-            $table->foreign('idNotif')->references('id')->on('notification')->onDelete('cascade');
             $table->foreign('idUser')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('idJob')->references('id')->on('job')->onDelete('cascade');
         });

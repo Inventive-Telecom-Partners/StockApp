@@ -92,6 +92,16 @@
                         </select>
                     </div>
 
+                    <div class="form-group">
+                      <label for="inputJob">Job de l'utilisateur</label>
+                      <select id="inputJob" class="form-control custom-select" name="Job">
+                          <option selected disabled>Sélectionner un job</option>
+                          @foreach ($jobData as $job)
+                            <option value="{{$job->id}}">{{$job->Job_Name}}</option>
+                          @endforeach
+                        </select>
+                    </div>
+
                     <a href="{{url('/admin/adduser')}}" class="btn btn-secondary">Annulé</a>
                     <input type="submit" value="Ajouter" class="btn btn-success float-right">
                   </form>

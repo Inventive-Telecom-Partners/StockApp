@@ -15,12 +15,10 @@ class CreateChangeRoleTable extends Migration
     {
         Schema::create('change_role', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('idNotif')->index();
             $table->unsignedBigInteger('idUser')->index();
             $table->unsignedBigInteger('idRole')->index();
             $table->timestamp('created_at');
 
-            $table->foreign('idNotif')->references('id')->on('notification')->onDelete('cascade');
             $table->foreign('idUser')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('idRole')->references('id')->on('role')->onDelete('cascade');
         });

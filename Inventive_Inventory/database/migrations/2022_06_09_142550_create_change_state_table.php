@@ -17,11 +17,9 @@ class CreateChangeStateTable extends Migration
             $table->id();
             $table->timestamp('created_at');
             $table->unsignedBigInteger('idState')->index();
-            $table->unsignedBigInteger('idNotif')->index();
             $table->unsignedBigInteger('idElement')->index();
 
             $table->foreign('idState')->references('id')->on('state')->onDelete('cascade');
-            $table->foreign('idNotif')->references('id')->on('notification')->onDelete('cascade');
             $table->foreign('idElement')->references('id')->on('element')->onDelete('cascade');
         });
     }

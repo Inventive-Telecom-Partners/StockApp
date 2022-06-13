@@ -16,8 +16,9 @@ class UserController extends Controller
     public function index(){
         $usersData= User::all();
         $roleData = Role::all();
+        $jobData =DB::table('job')->get();
         $user_role = DB::table("users")->join('change_role', 'users.id', '=', 'change_role.idUser')->join('role','change_role.idRole', '=','role.id')->get();
-        return view('admin/addUser',['usersData'=>$usersData,'roleData'=>$roleData,'user_role'=>$user_role]);
+        return view('admin/addUser',['usersData'=>$usersData,'roleData'=>$roleData,'user_role'=>$user_role,'jobData'=>$jobData]);
     }
 
     public function insert(Request $request){
@@ -25,20 +26,38 @@ class UserController extends Controller
         $email = $request->input('email');
         $password = Hash::make($request->input('password'));
         $Badge = $request->input('Badge');
-        $Role = $request->input('role');
+
         $data = array('Name'=>$Name,'email'=>$email,'password'=>$password,'Badge'=>$Badge);
         //$user_role = DB::table("users")->join('change_role', 'users.id', '=', 'change_role.idUser')->join('role','change_role.idRole', '=','role.id')->where('users.id',$user_auth)->get(['Role_Name']);
         DB::table('users')->insert($data);
+
+        //Partie Change_role
+        $Role = $request->input('role');
         $id = DB::table('users')->where('email',$email)->get('id')[0]->id;
-        $data2 = array('idNotif'=>5,'idUser'=>$id,'idRole'=>$Role,'created_at'=>date("Y-m-d H:i:s", strtotime('+2 hours')));
+        $data2 = array('idUser'=>$id,'idRole'=>$Role,'created_at'=>date("Y-m-d H:i:s", strtotime('+2 hours')));
         DB::table("change_role")->insert($data2);
-        return redirect('/admin/adduser')->with('message', 'Form Data Has Been deleted');
+
+        //Partie Change_job
+        $Job = $request->input('Job');
+        $datajob = array('idUser'=>$id,'idJob'=>$Job,'created_at'=>date("Y-m-d H:i:s", strtotime('+2 hours')));
+        DB::table("change_job")->insert($datajob);
+
+        /*Partie Notification */
+        $roleName=DB::table('role')->where('id',$Role)->get('Role_Name')[0]->Role_Name;
+        $notifDesc="L'utilisateur " . $Name . " a été rajouté en tant que " . $roleName . " par " . Auth::user()->Name;
+        $data3 = array("Description"=>$notifDesc,"idNotifType"=>1,"idUser"=>Auth::user()->id,"Read"=>0,'created_at'=>date("Y-m-d H:i:s", strtotime('+2 hours')));
+        DB::table("notification")->insert($data3);
+        return redirect('/admin/adduser')->with('message', "L'utilisateur a été créé");
     }
 
     public function delete($user_id){
-        $id = DB::table('users')->where('id',$user_id)->delete();
+        $Name = DB::table('users')->where('id',$user_id)->get('Name')[0]->Name;
+        $notifDesc="L'utilisateur " . $Name . " a été supprimé par " . Auth::user()->Name;
+        $notifi = array("Description"=>$notifDesc,"idNotifType"=>3,"idUser"=>Auth::user()->id,"Read"=>0,'created_at'=>date("Y-m-d H:i:s", strtotime('+2 hours')));
+        DB::table("notification")->insert($notifi);
+        DB::table('users')->where('id',$user_id)->delete();
         DB::table('change_role')->where('idUser',$user_id)->delete();
-        return redirect('/admin/adduser')->with('message', 'Form Data Has Been deleted');
+        return redirect('/admin/adduser')->with('message', "L'utilisateur a été supprimé");
     }
 
     public function edit($user_id){
@@ -55,7 +74,11 @@ class UserController extends Controller
             'password' => Hash::make($request['password']),
             'Badge' => $request['Badge']
         ]);
-        return redirect("/admin/adduser");
+        $Name = DB::table('users')->where('id',$user_id)->get('Name')[0]->Name;
+        $notifDesc="L'utilisateur " . $Name . " a été modifié par " . Auth::user()->Name;
+        $notifi = array("Description"=>$notifDesc,"idNotifType"=>2,"idUser"=>Auth::user()->id,"Read"=>0,'created_at'=>date("Y-m-d H:i:s", strtotime('+2 hours')));
+        DB::table("notification")->insert($notifi);
+        return redirect("/admin/adduser")->with('message', "L'utilisateur a été modifié");
     }
 
 }
