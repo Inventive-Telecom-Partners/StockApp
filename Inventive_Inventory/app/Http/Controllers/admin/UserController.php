@@ -25,15 +25,20 @@ class UserController extends Controller
         $email = $request->input('email');
         $password = Hash::make($request->input('password'));
         $Badge = $request->input('Badge');
+        $Role = $request->input('role');
         $data = array('Name'=>$Name,'email'=>$email,'password'=>$password,'Badge'=>$Badge);
-        $user_role = DB::table("users")->join('change_role', 'users.id', '=', 'change_role.idUser')->join('role','change_role.idRole', '=','role.id')->where('users.id',$user_auth)->get(['Role_Name']);
+        //$user_role = DB::table("users")->join('change_role', 'users.id', '=', 'change_role.idUser')->join('role','change_role.idRole', '=','role.id')->where('users.id',$user_auth)->get(['Role_Name']);
         DB::table('users')->insert($data);
-        return redirect()->back();
+        $id = DB::table('users')->where('email',$email)->get('id')[0]->id;
+        $data2 = array('idNotif'=>5,'idUser'=>$id,'idRole'=>$Role,'created_at'=>date("Y-m-d H:i:s", strtotime('+2 hours')));
+        DB::table("change_role")->insert($data2);
+        return redirect('/admin/adduser')->with('message', 'Form Data Has Been deleted');
     }
 
     public function delete($user_id){
         $id = DB::table('users')->where('id',$user_id)->delete();
-        return redirect('/admin/adduser')->with('message', 'Form Data Has Been Inserted');
+        DB::table('change_role')->where('idUser',$user_id)->delete();
+        return redirect('/admin/adduser')->with('message', 'Form Data Has Been deleted');
     }
 
     public function edit($user_id){
