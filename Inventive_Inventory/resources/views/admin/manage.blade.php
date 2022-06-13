@@ -55,7 +55,7 @@
 
                       <div class="form-group">
                         <label for="inputDesc">Description</label>
-                        <input type="text" id="inputDesc" class="form-control" placeholder="Descriptioin du stock" name="Description">
+                        <input type="text" id="inputDesc" class="form-control" placeholder="Description du stock" name="Description">
                       </div>
                       
                       <!-- <div class="row">
