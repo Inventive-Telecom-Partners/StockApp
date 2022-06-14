@@ -47,7 +47,12 @@ Route::prefix('/admin')->middleware(['auth'])->group(function () {
 
     Route::get('/stock', [App\Http\Controllers\admin\StockController::class,'index']);
     Route::get('/manage', [App\Http\Controllers\admin\StockController::class,'manage']);
-    Route::post('/createStock',[App\Http\Controllers\admin\StockController::class,'insert']);
+    Route::post('/createStock',[App\Http\Controllers\admin\StockController::class,'insertStock']);
+    Route::get('/editStock/{stock_id}',[App\Http\Controllers\admin\StockController::class,'editStock']);
+    Route::put('updateStock/{stock_id}',[App\Http\Controllers\admin\StockController::class,'updateStock']);
+    Route::delete('/deleteStock/{stock_id}',[App\Http\Controllers\admin\StockController::class,'deleteStock']);
+    Route::post('/createShelf',[App\Http\Controllers\admin\StockController::class,'insertShelf']);
+    Route::post('/createLevel',[App\Http\Controllers\admin\StockController::class,'insertLevel']);
     
     Route::get('/charts', [App\Http\Controllers\admin\ChartController::class,'index']);
     Route::get('/chartsAdmin', [App\Http\Controllers\admin\ChartController::class,'chartsAdmin']);

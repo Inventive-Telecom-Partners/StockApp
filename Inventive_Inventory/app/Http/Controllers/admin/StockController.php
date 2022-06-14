@@ -25,6 +25,8 @@ class StockController extends Controller
         return view('admin/manage',['stockData'=>$stockData,'shelfData'=>$shelfData,'levelData'=>$levelData]);
     }
 
+    /*Function for Stock */
+
     public function insertStock(Request $request){
         $Stock_Name = $request->input('Stock_Name');
         $Description = $request->input('Description');
@@ -34,6 +36,47 @@ class StockController extends Controller
         /*Notification*/
         $notifDesc="Le stock " . $Stock_Name . " a été créé par " . Auth::user()->Name;
         $dataNotif = array("Description"=>$notifDesc,"idNotifType"=>4,"idUser"=>Auth::user()->id,"Read"=>0,'created_at'=>date("Y-m-d H:i:s", strtotime('+2 hours')));
+        DB::table("notification")->insert($dataNotif);
+        return redirect()->back();
+    }
+
+    public function deleteStock($stock_id){
+        $StockName = DB::table('stock')->where('id',$stock_id)->get('Stock_Name')[0]->Stock_Name;
+        $notifDesc="Le stock " . $StockName . " a été supprimé par " . Auth::user()->Name;
+        $notifi = array("Description"=>$notifDesc,"idNotifType"=>6,"idUser"=>Auth::user()->id,"Read"=>0,'created_at'=>date("Y-m-d H:i:s", strtotime('+2 hours')));
+        DB::table("notification")->insert($notifi);
+        DB::table('stock')->where('id',$stock_id)->delete();
+        return redirect()->back()->with('message', "Le stock a été supprimé");
+    }
+
+    /*Function for Shelf */
+
+    public function insertShelf(Request $request){
+        $Stock = $request->input('Stock');
+        $Shelf_Name = $request->input('Shelf_Name');
+        $Description = $request->input('Description');
+        $data = array('Shelf_Name'=>$Shelf_Name,'Description'=>$Description,'idStock'=>$Stock);
+        Shelf::insert($data);
+
+        /*Notification*/
+        $StockName = DB::table('stock')->where('id',$Stock)->get('Stock_Name')[0]->Stock_Name;
+        $notifDesc="L'étagère' " . $Shelf_Name . " pour le stock " . $StockName . " a été créé par " . Auth::user()->Name;
+        $dataNotif = array("Description"=>$notifDesc,"idNotifType"=>5,"idUser"=>Auth::user()->id,"Read"=>0,'created_at'=>date("Y-m-d H:i:s", strtotime('+2 hours')));
+        DB::table("notification")->insert($dataNotif);
+        return redirect()->back();
+    }
+
+    public function insertLevel(Request $request){
+        $Shelf = $request->input('Shelf');
+        $Level_Name = $request->input('Level_Name');
+        $Description = $request->input('Description');
+        $data = array('Level_Name'=>$Level_Name,'Description'=>$Description,'idShelf'=>$Shelf);
+        Level::insert($data);
+
+        /*Notification*/
+        $ShelfName = DB::table('shelf')->where('id',$Shelf)->get('Shelf_Name')[0]->Shelf_Name;
+        $notifDesc="L'étage " . $Level_Name . " pour l'étagère " . $ShelfName . " a été créé par " . Auth::user()->Name;
+        $dataNotif = array("Description"=>$notifDesc,"idNotifType"=>5,"idUser"=>Auth::user()->id,"Read"=>0,'created_at'=>date("Y-m-d H:i:s", strtotime('+2 hours')));
         DB::table("notification")->insert($dataNotif);
         return redirect()->back();
     }

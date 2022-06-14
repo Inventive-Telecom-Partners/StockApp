@@ -42,8 +42,6 @@
                   <li class="nav-item"><a class="nav-link" href="#addShelf" data-toggle="tab">Ajouter étagère</a></li>
                   <li class="nav-item"><a class="nav-link" href="#addLevel" data-toggle="tab">Ajouter étage</a></li>
                   <li class="nav-item"><a class="nav-link" href="#displayStock" data-toggle="tab">Afficher les stocks</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#displayShelf" data-toggle="tab">Afficher les étagères</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#displayLevel" data-toggle="tab">Afficher les étages</a></li>
                 </ul>
               </div><!-- /.card-header -->
 
@@ -112,16 +110,13 @@
                   <!-- /.tab-pane changeStock -->
 
 
-
-
-
                   <div class="tab-pane" id="addShelf">
                     <form action="/admin/createShelf" method="post">
                     @csrf
 
                       <div class="form-group">
                         <label for="inputShelfStock">Créer étagère pour le stock :</label>
-                        <select id="inputShelfStock" class="form-control custom-select">
+                        <select id="inputShelfStock" class="form-control custom-select" name="Stock">
                           <option selected disabled>Sélectionner un stock</option>
                             @foreach ($stockData as $stock)
                               @if($stock->Stock_Name == "noStock")
@@ -154,26 +149,13 @@
                     @csrf
 
                       <div class="form-group">
-                        <label for="inputLevelStock">Créer étage pour le stock :</label>
-                        <select id="inputLevelStock" class="form-control custom-select">
-                          <option selected disabled>Sélectionner un stock</option>
-                            @foreach ($stockData as $stock)
-                              @if($stock->Stock_Name == "noStock")
-                              @else
-                              <option value="{{$stock->id}}">{{$stock->Stock_Name}}</option>
-                              @endif
-                            @endforeach
-                        </select>
-                      </div>
-
-                      <div class="form-group">
                         <label for="inputLevelShelf">Créer étage pour l'étagère :</label>
-                        <select id="inputLevelShelf" class="form-control custom-select">
+                        <select id="inputLevelShelf" class="form-control custom-select" name="Shelf">
                           <option selected disabled>Sélectionner une étagère</option>
                             @foreach ($shelfData as $shelf)
                               @if($shelf->Shelf_Name == "noShelf")
                               @else
-                              <option value="{{$stock->id}}">{{$shelf->Shelf_Name}}</option>
+                              <option value="{{$shelf->id}}">{{$shelf->Shelf_Name}}</option>
                               @endif
                             @endforeach
                         </select>
@@ -203,32 +185,71 @@
                     @else
                     <div class="row">
                       <div class="col-12">
-                        <div class="card">
+                        <div class="card card-dark collapsed-card">
                           <div class="card-header">
                             <div class="row justify-content-between">
-                              <div class="col">
                                 <h3 class="card-title"><b>{{$stock->Stock_Name}}</b></h3>
-                              </div>
                               <div class="row">
                                 <div class="col">
-                                  <a href="{{ url ('admin/edit/')}}" class="btn btn-success">Modifier</a>
+                                  <a href="{{ url ('admin/editStock/'.$stock->id)}}" class="btn btn-success">Modifier</a>
                                 </div>
                                 <div class="col">
-                                  <form action="{{ url ('admin/delete/')}}" method="post">
+                                  <form action="{{ url ('admin/deleteStock/'.$stock->id)}}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <input type="submit" value="Supprimer" class="btn btn-danger">
                                   </form>
+                                </div>
+                                <div class="card-tools">
+                                  <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                    <i class="fas fa-plus"></i>
+                                  </button>
                                 </div>
                               </div>
                             </div>
                           </div>
                           <div class="card-body">
                             <div class="row">
-                              <p>{{$stock->Description}}</p>
+                              <p><b><u>Description :</u></b> {{$stock->Description}}</p>
                             </div>
+                            <table id="{{$stock->id}}" class="table table-bordered table-striped">
+                                <thead>
+                                  <tr>
+                                    <th>Etagère</th>
+                                    <th>Description de l'étagère</th>
+                                    <th>Etage</th>
+                                    <th>Description de l'étage</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($shelfData as $shelf)
+                                @if($stock->id == $shelf->idStock)
+                                  @foreach($levelData as $level)
+                                  @if($shelf->id == $level->idShelf)  
+                                  <tr>
+                                    <td>{{$shelf->Shelf_Name}}</td>
+                                    <td>{{$shelf->Description}}</td>
+                                    <td>{{$level->Level_Name}}</td>
+                                    <td>{{$level->Description}}</td>
+                                  </tr>
+                                  @else
+                                  @endif
+                                  @endforeach
+                                @else
+                                @endif
+                                @endforeach
+                                </tbody>
+                                <tfoot>
+                                  <tr>
+                                    <th>Etagère</th>
+                                    <th>Description de l'étagère</th>
+                                    <th>Etage</th>
+                                    <th>Description de l'étage</th>
+                                  </tr>
+                                </tfoot>
+                            </table>
                           </div>
-                          <!-- /.card-header -->
+                          <!-- /.card-BODY -->
                         </div>
                         <!-- /.card -->
                       </div>
@@ -238,93 +259,6 @@
                     @endforeach
                   </div>
                   <!-- /.tab-pane displayStock-->
-
-                  <div class="tab-pane" id="displayShelf">
-                    <!-- *Les objets du stock supprimé se retrouveront dans le stock par défaut : "noStock"* -->
-                    @foreach($shelfData as $shelf)
-                    @if($shelf->Shelf_Name == "noShelf")
-                    @else
-                    <div class="row">
-                      <div class="col-12">
-                        <div class="card">
-                          <div class="card-header">
-                            <div class="row justify-content-between">
-                              <div class="col">
-                                <h3 class="card-title"><b>{{$shelf->Shelf_Name}}</b></h3>
-                              </div>
-                              <div class="row">
-                                <div class="col">
-                                  <a href="{{ url ('admin/edit/')}}" class="btn btn-success">Modifier</a>
-                                </div>
-                                <div class="col">
-                                  <form action="{{ url ('admin/delete/')}}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <input type="submit" value="Supprimer" class="btn btn-danger">
-                                  </form>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="card-body">
-                            <div class="row">
-                              <p>{{$shelf->Description}}</p>
-                            </div>
-                          </div>
-                          <!-- /.card-header -->
-                        </div>
-                        <!-- /.card -->
-                      </div>
-                    </div>
-                    <!-- /.row -->
-                    @endif
-                    @endforeach
-                  </div>
-                  <!-- /.tab-pane displayShelf -->
-
-                  <div class="tab-pane" id="displayLevel">
-                    <!-- *Les objets du stock supprimé se retrouveront dans le stock par défaut : "noStock"* -->
-                    @foreach($levelData as $level)
-                    @if($level->Level_Name == "noLevel")
-                    @else
-                    <div class="row">
-                      <div class="col-12">
-                        <div class="card">
-                          <div class="card-header">
-                            <div class="row justify-content-between">
-                              <div class="col">
-                                <h3 class="card-title"><b>{{$level->Level_Name}}</b></h3>
-                              </div>
-                              <div class="row">
-                                <div class="col">
-                                  <a href="{{ url ('admin/edit/')}}" class="btn btn-success">Modifier</a>
-                                </div>
-                                <div class="col">
-                                  <form action="{{ url ('admin/delete/')}}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <input type="submit" value="Supprimer" class="btn btn-danger">
-                                  </form>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="card-body">
-                            <div class="row">
-                              <p>{{$level->Description}}</p>
-                            </div>
-                          </div>
-                          <!-- /.card-header -->
-                        </div>
-                        <!-- /.card -->
-                      </div>
-                    </div>
-                    <!-- /.row -->
-                    @endif
-                    @endforeach
-                  </div>
-                  <!-- /.tab-pane displayLevel-->
-
                 </div>
                 <!-- /.tab-content -->
               </div><!-- /.card-body -->
@@ -342,4 +276,5 @@
       
     </section>
     <!-- /.content -->
+
 @endsection
