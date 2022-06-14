@@ -66,6 +66,17 @@ class StockController extends Controller
         return redirect()->back();
     }
 
+    public function deleteShelf($shelf_id){
+        $ShelfName = DB::table('shelf')->where('id',$shelf_id)->get('Shelf_Name')[0]->Shelf_Name;
+        $notifDesc="L'étagère " . $ShelfName . " a été supprimée par " . Auth::user()->Name;
+        $notifi = array("Description"=>$notifDesc,"idNotifType"=>5,"idUser"=>Auth::user()->id,"Read"=>0,'created_at'=>date("Y-m-d H:i:s", strtotime('+2 hours')));
+        DB::table("notification")->insert($notifi);
+        DB::table('shelf')->where('id',$shelf_id)->delete();
+        return redirect()->back()->with('message', "L'étagère a été supprimée");
+    }
+
+    /*Function for Level */
+
     public function insertLevel(Request $request){
         $Shelf = $request->input('Shelf');
         $Level_Name = $request->input('Level_Name');

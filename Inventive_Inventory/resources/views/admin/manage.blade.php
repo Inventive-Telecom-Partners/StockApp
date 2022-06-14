@@ -227,9 +227,45 @@
                                   @foreach($levelData as $level)
                                   @if($shelf->id == $level->idShelf)  
                                   <tr>
-                                    <td>{{$shelf->Shelf_Name}}</td>
+                                    <td>
+                                      <div class="row">
+                                        <div class="col">
+                                          {{$shelf->Shelf_Name}}
+                                        </div>
+                                        <div class="col">
+                                          <div class="row">
+                                            <a href="{{ url ('admin/editShelf/'.$shelf->id)}}" class="btn btn-success">Modifier</a>
+                                          </div>
+                                          <div class="row" style="margin-top:10px;">
+                                            <form action="{{ url ('admin/deleteShelf/'.$shelf->id)}}" method="post">
+                                              @csrf
+                                              @method('DELETE')
+                                              <input type="submit" value="Supprimer" class="btn btn-danger">
+                                            </form>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </td>
                                     <td>{{$shelf->Description}}</td>
-                                    <td>{{$level->Level_Name}}</td>
+                                    <td>
+                                      <div class="row">
+                                        <div class="col">
+                                          {{$level->Level_Name}}
+                                        </div>
+                                        <div class="col">
+                                          <div class="col">
+                                            <a href="{{ url ('admin/editLevel/'.$level->id)}}" class="btn btn-success">Modifier</a>
+                                          </div>
+                                          <div class="row" style="margin-top:10px;">
+                                            <form action="{{ url ('admin/deleteLevel/'.$shelf->id)}}" method="post">
+                                              @csrf
+                                              @method('DELETE')
+                                              <input type="submit" value="Supprimer" class="btn btn-danger">
+                                            </form>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </td>
                                     <td>{{$level->Description}}</td>
                                   </tr>
                                   @else
