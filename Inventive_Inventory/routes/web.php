@@ -13,18 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('accueil');
-});
-Route::get('/stockIn', function () {
-    return view('stockIn');
-});
-Route::get('/stockOut', function () {
-    return view('stockOut');
-});
-Route::get('/research', function () {
-    return view('research');
-});
+Route::get('/',[App\Http\Controllers\AccueilController::class, 'index']);
+Route::get('/stockIn',[App\Http\Controllers\AccueilController::class, 'stockIn']);
+Route::post('/stockInCreate',[App\Http\Controllers\AccueilController::class,'insertStockIn']);
+Route::get('/stockOut',[App\Http\Controllers\AccueilController::class, 'stockOut']);
+Route::get('/research',[App\Http\Controllers\AccueilController::class, 'research']);
 
 
 Route::get('/dashboard', function () {

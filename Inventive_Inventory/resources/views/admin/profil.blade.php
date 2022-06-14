@@ -54,7 +54,7 @@
                     @endif
                   </li>
                   <li class="list-group-item">
-                    <b>I/O du jour</b> <a class="float-right">A recup de la bdd</a>
+                    <b>In/Out</b> <a class="float-right">{{$countIn}}/{{$countOut}}</a>
                   </li>
                 </ul>
 

@@ -20,8 +20,9 @@ class ProfileController extends Controller
         $roleData = Role::all();
         $jobData = Job::all();
         $user_job = DB::table("users")->join('change_job', 'users.id', '=', 'change_job.idUser')->join('job','change_job.idJob', '=','job.id')->where('users.id',$user_auth)->get(['Job_Name']);
-
-        return view('admin/profil', ['roleData'=>$roleData,'user_role'=>$user_role,'jobData'=>$jobData,'user_job'=>$user_job]);
+        $countIn = DB::table("change_location")->where("idUser",$user_auth)->where("idFlow", 1)->count();
+        $countOut = DB::table("change_location")->where("idUser",$user_auth)->where("idFlow", 2)->count();
+        return view('admin/profil', ['roleData'=>$roleData,'user_role'=>$user_role,'jobData'=>$jobData,'user_job'=>$user_job,'countIn'=>$countIn,'countOut'=>$countOut]);
     }
 
     public function update(Request $request, $my_id){
