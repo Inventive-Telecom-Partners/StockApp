@@ -119,7 +119,17 @@
                       <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
                           <div class="card bg-light d-flex flex-fill">
                             <div class="card-header text-muted border-bottom-0">
-                            {{$user_role[$index]->Role_Name}} - {{$user_job[$index]->Job_Name}}
+                              @foreach($user_role as $j)
+                              @if($j->idUser == $i->id)
+                                {{$j->Role_Name}}
+                              @endif
+                              @endforeach 
+                              - 
+                              @foreach($user_job as $k)
+                              @if($k->idUser == $i->id)
+                                {{$k->Job_Name}}
+                              @endif
+                              @endforeach
                             </div>
                             <div class="card-body pt-0">
                               <div class="row">
