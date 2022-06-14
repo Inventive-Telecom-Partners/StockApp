@@ -122,4 +122,21 @@ class UserController extends Controller
         return redirect('/admin/adduser')->with('message', "Le job a été supprimé");
     }
 
+    public function editJob($job_id){
+        $job = DB::table('job')->where('id',$job_id)->first();
+        return view('admin/editJob',['job'=>$job]);
+    }
+
+    public function updateJob(Request $request, $job_id){
+        DB::table('job')->where('id',$job_id)->update([
+            'Job_Name' => $request['JobName'],
+            'Description' => $request['JobDesc']
+        ]);
+        $JobName = DB::table('job')->where('id',$job_id)->get('Job_Name')[0]->Job_Name;
+        $notifDesc="Le job " . $JobName . " a été modifié par " . Auth::user()->Name;
+        $notifiJobUpdate = array("Description"=>$notifDesc,"idNotifType"=>11,"idUser"=>Auth::user()->id,"Read"=>0,'created_at'=>date("Y-m-d H:i:s", strtotime('+2 hours')));
+        DB::table("notification")->insert($notifiJobUpdate);
+        return redirect("/admin/adduser")->with('message', "Le job a été modifié");
+    }
+
 }

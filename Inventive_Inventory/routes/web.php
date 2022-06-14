@@ -45,7 +45,8 @@ Route::prefix('/admin')->middleware(['auth'])->group(function () {
     Route::put('updateUser/{user_id}',[App\Http\Controllers\admin\UserController::class,'update']);
     Route::delete('/delete/{user_id}',[App\Http\Controllers\admin\UserController::class,'delete']);
     Route::post('/createJob',[App\Http\Controllers\admin\UserController::class,'insertJob']);
-    
+    Route::get('/editJob/{job_id}',[App\Http\Controllers\admin\UserController::class,'editJob']);
+    Route::put('updateJob/{job_id}',[App\Http\Controllers\admin\UserController::class,'updateJob']);
     Route::delete('/deleteJob/{job_id}',[App\Http\Controllers\admin\UserController::class,'deleteJob']);
 
     Route::get('/stock', [App\Http\Controllers\admin\StockController::class,'index']);
