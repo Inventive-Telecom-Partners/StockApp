@@ -29,6 +29,7 @@
                 <table id="objet" class="table table-bordered table-striped">
                   <thead>
                     <tr>
+                      <th>Stock</th>
                       <th>Etagère</th>
                       <th>Etage</th>
                       <th>Marque</th>
@@ -38,6 +39,7 @@
                       <th>Numéro de série</th>
                       <th>Couleur</th>
                       <th>Etat</th>
+                      <th>Show</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -51,10 +53,13 @@
                       <td></td>
                       <td></td>
                       <td></td>
+                      <td></td>
+                      <td></td>
                     </tr>      
                   </tbody>
                   <tfoot>
                     <tr>
+                      <th>Stock</th>
                       <th>Etagère</th>
                       <th>Etage</th>
                       <th>Marque</th>
@@ -64,6 +69,7 @@
                       <th>Numéro de série</th>
                       <th>Couleur</th>
                       <th>Etat</th>
+                      <th>Show</th>
                     </tr>
                   </tfoot>
                 </table>
