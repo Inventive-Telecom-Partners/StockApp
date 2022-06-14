@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Role;
+use App\Models\Job;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -65,8 +66,10 @@ class UserController extends Controller
     public function edit($user_id){
         $user = DB::table('users')->where('id',$user_id)->first();
         $roleData = Role::all();
+        $jobData = Job::all();
         $user_role = DB::table("users")->join('change_role', 'users.id', '=', 'change_role.idUser')->join('role','change_role.idRole', '=','role.id')->where('users.id',$user->id)->get(['Role_Name']);
-        return view('admin/editUser',['user'=>$user,'roleData'=>$roleData,'user_role'=>$user_role]);
+        $user_job = DB::table("users")->join('change_job', 'users.id', '=', 'change_job.idUser')->join('job','change_job.idJob', '=','job.id')->where('users.id',$user->id)->get(['Job_Name']);
+        return view('admin/editUser',['user'=>$user,'roleData'=>$roleData,'jobData'=>$jobData,'user_role'=>$user_role,'user_job'=>$user_job]);
     }
 
     public function update(Request $request, $user_id){
@@ -77,11 +80,46 @@ class UserController extends Controller
             'Badge' => $request['Badge'],
             'updated_at'=>date("Y-m-d H:i:s", strtotime('+2 hours'))
         ]);
+        DB::table("users")->join('change_job', 'users.id', '=', 'change_job.idUser')->join('job','change_job.idJob', '=','job.id')->where('users.id',$user_id)->update([
+            'change_job.idJob' => $request['JobId']
+        ]);
+        DB::table("users")->join('change_role', 'users.id', '=', 'change_role.idUser')->join('role','change_role.idRole', '=','role.id')->where('users.id',$user_id)->update([
+            'change_role.idRole' => $request['RoleId']
+        ]);
         $Name = DB::table('users')->where('id',$user_id)->get('Name')[0]->Name;
         $notifDesc="L'utilisateur " . $Name . " a été modifié par " . Auth::user()->Name;
         $notifi = array("Description"=>$notifDesc,"idNotifType"=>2,"idUser"=>Auth::user()->id,"Read"=>0,'created_at'=>date("Y-m-d H:i:s", strtotime('+2 hours')));
         DB::table("notification")->insert($notifi);
         return redirect("/admin/adduser")->with('message', "L'utilisateur a été modifié");
+    }
+
+    /*Partie Job */
+
+    public function insertJob(Request $request){
+        $JobName = $request->input('JobName');
+        $JobDescription = $request->input('JobDescription');
+
+        $data = array('Job_Name'=>$JobName,'Description'=>$JobDescription);
+        //$user_role = DB::table("users")->join('change_role', 'users.id', '=', 'change_role.idUser')->join('role','change_role.idRole', '=','role.id')->where('users.id',$user_auth)->get(['Role_Name']);
+        DB::table('job')->insert($data);
+
+        /*Partie Notification */
+        $notifDesc="Le job " . $JobName . " a été rajouté par " . Auth::user()->Name;
+        $dataNotifJob = array("Description"=>$notifDesc,"idNotifType"=>10,"idUser"=>Auth::user()->id,"Read"=>0,'created_at'=>date("Y-m-d H:i:s", strtotime('+2 hours')));
+        DB::table("notification")->insert($dataNotifJob);
+        return redirect('/admin/adduser')->with('message', "Le job a été créé");
+    }
+
+    public function deleteJob($job_id){
+        $JobName = DB::table('job')->where('id',$job_id)->get('Job_Name')[0]->Job_Name;
+        $notifDesc="Le job " . $JobName . " a été supprimé par " . Auth::user()->Name;
+        $notific = array("Description"=>$notifDesc,"idNotifType"=>12,"idUser"=>Auth::user()->id,"Read"=>0,'created_at'=>date("Y-m-d H:i:s", strtotime('+2 hours')));
+        DB::table("notification")->insert($notific);
+        DB::table("users")->join('change_job', 'users.id', '=', 'change_job.idUser')->join('job','change_job.idJob', '=','job.id')->where('change_job.idJob',$job_id)->update([
+            'change_job.idJob' => 5
+        ]);
+        DB::table('job')->where('id',$job_id)->delete();
+        return redirect('/admin/adduser')->with('message', "Le job a été supprimé");
     }
 
 }

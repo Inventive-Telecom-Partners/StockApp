@@ -52,14 +52,14 @@
                       <div class="row">
                         <div class="col">
                           <div class="form-group">
-                            <label for="inputName">Nom</label>
+                            <label for="inputName">Nom*</label>
                             <input type="text" id="inputName" class="form-control" value="{{$user->Name}}" name="Name">
                           </div>
                         </div>
 
                         <div class="col">
                           <div class="form-group">
-                            <label for="inputBadge">Badge</label>
+                            <label for="inputBadge">Badge*</label>
                             @if($user->Badge)
                               <input type="text" class="form-control" id="inputBadge" value="{{$user->Badge}}" name="Badge">  
                             @else
@@ -71,14 +71,14 @@
                       <div class="row">
                         <div class="col">
                           <div class="form-group">
-                            <label for="inputEmail">Email</label>
+                            <label for="inputEmail">Email*</label>
                               <input type="email" class="form-control" id="inputEmail" value="{{$user->email}}" name="email">
                           </div>
                         </div>
 
                         <div class="col">
                           <div class="form-group">
-                            <label for="inputPwd">Mot de passe</label>
+                            <label for="inputPwd">Mot de passe*</label>
                             <input type="password" class="form-control" id="inputPwd" placeholder="Insérez nouveau mot de passe" name="password">
                           </div>
                         </div>
@@ -91,7 +91,7 @@
 
                       <div class="form-group">
                         <label for="inputRole">Rôle de l'utilisateur</label>
-                        <select id="inputRole" class="form-control custom-select">
+                        <select id="inputRole" class="form-control custom-select" name="RoleId">
                           @foreach ($roleData as $role)
                             @if($role->Role_Name == $user_role[0]->Role_Name)
                             <option value="{{$role->id}}" selected>{{$role->Role_Name}}</option>
@@ -100,9 +100,22 @@
                             @endif
                           @endforeach
                         </select>
-                    </div>
+                      </div>
 
-                      <a href="{{url('/adduser')}}" class="btn btn-secondary">Annulé</a>
+                      <div class="form-group">
+                        <label for="inputJob">Job de l'utilisateur</label>
+                        <select id="inputJob" class="form-control custom-select" name="JobId">
+                          @foreach ($jobData as $job)
+                            @if($job->Job_Name == $user_job[0]->Job_Name)
+                            <option value="{{$job->id}}" selected>{{$job->Job_Name}}</option>
+                            @else
+                            <option value="{{$job->id}}">{{$job->Job_Name}}</option>
+                            @endif
+                          @endforeach
+                        </select>
+                      </div>
+
+                      <a href="{{url('admin/adduser')}}" class="btn btn-secondary">Annulé</a>
                       <input type="submit" value="Modifier" class="btn btn-success float-right">
                     </form>
                   </div>

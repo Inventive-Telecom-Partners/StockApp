@@ -203,9 +203,9 @@
 
           <li class="nav-item">
             <a href="{{url('/admin/sales')}}" class="nav-link {{(app('request')->route()->uri() == 'admin/sales') ? 'active' : ''}}">
-              <i class="nav-icon fas fa-dollar-sign"></i>
+              <i class="nav-icon fas fa-pallet"></i>
               <p>
-                Revente ebay
+                Gestion des objets
               </p>
             </a>
           </li>

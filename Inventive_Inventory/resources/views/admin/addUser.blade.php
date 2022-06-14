@@ -40,39 +40,44 @@
                 <ul class="nav nav-pills">
                   <li class="nav-item"><a class="nav-link active" href="#addUser" data-toggle="tab">Ajouter utilisateur</a></li>
                   <li class="nav-item"><a class="nav-link" href="#displayUser" data-toggle="tab">Afficher utilisateurs</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#addJob" data-toggle="tab">Ajouter job</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#displayJob" data-toggle="tab">Afficher jobs</a></li>
                 </ul>
               </div><!-- /.card-header -->
               <div class="card-body">
                 <div class="tab-content">
                   <div class="active tab-pane" id="addUser">
+                    <div class="row">
+                      *Champs requis
+                    </div>
                   <form action="/admin/create" method="post">
                   @csrf
                     <div class="row">
                       <div class="col">
                         <div class="form-group">
-                          <label for="inputName">Nom</label>
-                          <input type="text" id="inputName" class="form-control" placeholder="Nom de l'utilisateur" name="Name">
+                          <label for="inputName">Nom*</label>
+                          <input type="text" id="inputName" class="form-control" placeholder="Nom de l'utilisateur" name="Name" required>
                         </div>
                       </div>
                       <div class="col">
                         <div class="form-group">
-                          <label for="inputBadge">Badge</label>
-                          <input type="text" id="inputBadge" class="form-control" placeholder="Badge/Tag de l'utilisateur" name="Badge">
+                          <label for="inputBadge">Badge*</label>
+                          <input type="text" id="inputBadge" class="form-control" placeholder="Badge/Tag de l'utilisateur" name="Badge" required>
                         </div>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col">
                         <div class="form-group">
-                          <label for="inputEmail">Email</label>
-                          <input type="email" class="form-control" id="inputEmail" placeholder="Insérez email utilisateur" name="email">
+                          <label for="inputEmail">Email*</label>
+                          <input type="email" class="form-control" id="inputEmail" placeholder="Insérez email utilisateur" name="email" required>
                         </div>
                       </div>
 
                       <div class="col">
                         <div class="form-group">
-                          <label for="inputPwd">Mot de passe</label>
-                          <input type="password" class="form-control" id="inputPwd" placeholder="Insérez nouveau mot de passe" name="password">
+                          <label for="inputPwd">Mot de passe*</label>
+                          <input type="password" class="form-control" id="inputPwd" placeholder="Insérez nouveau mot de passe" name="password" required>
                         </div>
                       </div>
                     </div>
@@ -83,9 +88,9 @@
                     </div>
 
                     <div class="form-group">
-                      <label for="inputRole">Rôle de l'utilisateur</label>
-                      <select id="inputRole" class="form-control custom-select" name="role">
-                          <option selected disabled>Sélectionner un rôle</option>
+                      <label for="inputRole">Rôle de l'utilisateur*</label>
+                      <select id="inputRole" class="form-control custom-select" name="role" required>
+                          <option value="" selected disabled>Sélectionner un rôle</option>
                           @foreach ($roleData as $role)
                             <option value="{{$role->id}}">{{$role->Role_Name}}</option>
                           @endforeach
@@ -93,15 +98,14 @@
                     </div>
 
                     <div class="form-group">
-                      <label for="inputJob">Job de l'utilisateur</label>
-                      <select id="inputJob" class="form-control custom-select" name="Job">
-                          <option selected disabled>Sélectionner un job</option>
+                      <label for="inputJob">Job de l'utilisateur*</label>
+                      <select id="inputJob" class="form-control custom-select" name="Job" required>
+                          <option value="" selected disabled>Sélectionner un job</option>
                           @foreach ($jobData as $job)
                             <option value="{{$job->id}}">{{$job->Job_Name}}</option>
                           @endforeach
                         </select>
                     </div>
-
                     <a href="{{url('/admin/adduser')}}" class="btn btn-secondary">Annulé</a>
                     <input type="submit" value="Ajouter" class="btn btn-success float-right">
                   </form>
@@ -153,6 +157,72 @@
                     </div>
                   </div>
                   <!-- /.tab-pane -->
+
+                  <div class="tab-pane" id="addJob">
+                  <form action="/admin/createJob" method="post">
+                  @csrf
+
+                        <div class="form-group">
+                          <label for="inputJobName">Intitulé</label>
+                          <input type="text" id="inputJobName" class="form-control" placeholder="Intitulé du job" name="JobName">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="inputJobDesc">Description</label>
+                          <input type="text" id="inputJobDesc" class="form-control" placeholder="Description du job" name="JobDescription">
+                        </div>
+
+                    <a href="{{url('/admin/adduser')}}" class="btn btn-secondary">Annulé</a>
+                    <input type="submit" value="Ajouter" class="btn btn-success float-right">
+                  </form>
+
+                  </div>
+                  <!-- /.tab-pane addJob-->
+
+                  <div class="tab-pane" id="displayJob">
+                  @foreach($jobData as $job)
+                  @if($job->Job_Name == "noJob")
+                  @else
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="card  collapsed-card">
+                          <div class="card-header">
+                            <div class="row justify-content-between">
+                                <h3 class="card-title"><b>{{$job->Job_Name}}</b></h3>
+                              <div class="row">
+                                <div class="col">
+                                  <a href="{{ url ('admin/editJob/'.$job->id)}}" class="btn btn-success">Modifier</a>
+                                </div>
+                                <div class="col">
+                                  <form action="{{ url ('admin/deleteJob/'.$job->id)}}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="submit" value="Supprimer" class="btn btn-danger">
+                                  </form>
+                                </div>
+                                <div class="card-tools">
+                                  <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                    <i class="fas fa-plus"></i>
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="card-body">
+                            <div class="row">
+                              <p><b><u>Description :</u></b> {{$job->Description}}</p>
+                            </div>         
+                          </div>
+                          <!-- /.card-BODY -->
+                        </div>
+                        <!-- /.card -->
+                      </div>
+                    </div>
+                    <!-- /.row -->
+                    @endif
+                    @endforeach
+                  </div>
+                  <!-- /.tab-pane displayJob-->
 
                 </div>
                 <!-- /.tab-content -->
