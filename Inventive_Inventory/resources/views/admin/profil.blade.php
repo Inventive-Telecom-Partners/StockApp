@@ -40,7 +40,6 @@
 
                 <h3 class="profile-username text-center">{{auth()->user()->Name}}</h3>
 
-                <!-- Insérez ici son niveau d'accès (admin ou user voir même si y a le temps par groupe : techos, sales, etc) depuis la base de donnée -->
                 <p class="text-muted text-center">{{$user_role[0]->Role_Name}} - {{$user_job[0]->Job_Name}}</p>
 
                 <ul class="list-group list-group-unbordered mb-3">
@@ -162,35 +161,38 @@
                   <!-- /.tab-pane -->
 
                   <div class="tab-pane" id="settings">
+                  <div class="row">
+                      *Champs requis
+                    </div>
                     <form action="{{url('admin/updateMe/'.auth()->user()->id)}}" method="post">
                       @csrf 
                       @method('PUT')
                       <div class="form-group">
-                        <label for="inputName">Nom actuel :</label>
+                        <label for="inputName">Nom actuel :*</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputName" value="{{auth()->user()->Name}}" name="Name">
+                          <input type="text" class="form-control" id="inputName" value="{{auth()->user()->Name}}" name="Name" required>
                         </div>
                       </div>
                       <div class="form-group">
-                        <label for="inputEmail">Email actuel :</label>
+                        <label for="inputEmail">Email actuel :*</label>
                         <div class="col-sm-10">
-                          <input type="email" class="form-control" id="inputEmail" value="{{auth()->user()->email}}" name="email">
+                          <input type="email" class="form-control" id="inputEmail" value="{{auth()->user()->email}}" name="email" required>
                         </div>
                       </div>                      
                       <div class="form-group">
-                        <label for="inputExperience">Badge/Tag actuel :</label>
+                        <label for="inputExperience">Badge/Tag actuel :*</label>
                         <div class="col-sm-10">
                           @if(auth()->user()->Badge)
-                            <input class="form-control" id="inputExperience" value="{{auth()->user()->Badge}}" name="Badge">
+                            <input class="form-control" id="inputExperience" value="{{auth()->user()->Badge}}" name="Badge" required>
                           @else
                             <input class="form-control" id="inputExperience" placeholder="Scannez ou insérez manuellement votre numéro d'identification tag" name="Badge">
                           @endif
                         </div>
                       </div>
                       <div class="form-group">
-                        <label for="inputPwd">Mot de passe</label>
+                        <label for="inputPwd">Mot de passe*</label>
                         <div class="col-sm-10">
-                          <input type="password" class="form-control" id="inputPwd" placeholder="Insérez nouveau mot de passe" name="password">
+                          <input type="password" class="form-control" id="inputPwd" placeholder="Insérez nouveau mot de passe" name="password" required>
                         </div>
                       </div> 
                       <div class="form-group">

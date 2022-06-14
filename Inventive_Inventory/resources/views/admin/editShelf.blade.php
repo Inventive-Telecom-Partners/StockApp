@@ -46,6 +46,9 @@
                   <div class="row">
                       <h3><b>Modification de l'étagère :</b> {{$shelf->Shelf_Name}} du stock {{$stock->Stock_Name}}</h3>
                   </div>
+                  <div class="row">
+                      *Champs requis
+                    </div>
                     <form action="{{url('admin/updateShelf/'.$shelf->id)}}" method="post">
                       @csrf 
                       @method('PUT')
@@ -53,14 +56,14 @@
                         <div class="col">
                           <div class="form-group">
                             <label for="inputShelfName">Nom*</label>
-                            <input type="text" id="inputShelfName" class="form-control" value="{{$shelf->Shelf_Name}}" name="ShelfName">
+                            <input type="text" id="inputShelfName" class="form-control" value="{{$shelf->Shelf_Name}}" name="ShelfName" required>
                           </div>
                         </div>
 
                         <div class="col">
                           <div class="form-group">
                             <label for="inputShelfDesc">Description*</label>
-                              <input type="text" class="form-control" id="inputShelfDesc" value="{{$shelf->Description}}" name="ShelfDesc">  
+                              <input type="text" class="form-control" id="inputShelfDesc" value="{{$shelf->Description}}" name="ShelfDesc" required>  
                           </div>
                         </div>
                       </div>

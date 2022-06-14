@@ -46,6 +46,9 @@
                   <div class="row">
                       <h3><b>Modification de l'utilisateur :</b> {{$user->Name}}</h3>
                   </div>
+                  <div class="row">
+                      *Champs requis
+                    </div>
                     <form action="{{url('admin/updateUser/'.$user->id)}}" method="post">
                       @csrf 
                       @method('PUT')
@@ -53,7 +56,7 @@
                         <div class="col">
                           <div class="form-group">
                             <label for="inputName">Nom*</label>
-                            <input type="text" id="inputName" class="form-control" value="{{$user->Name}}" name="Name">
+                            <input type="text" id="inputName" class="form-control" value="{{$user->Name}}" name="Name" required>
                           </div>
                         </div>
 
@@ -61,9 +64,9 @@
                           <div class="form-group">
                             <label for="inputBadge">Badge*</label>
                             @if($user->Badge)
-                              <input type="text" class="form-control" id="inputBadge" value="{{$user->Badge}}" name="Badge">  
+                              <input type="text" class="form-control" id="inputBadge" value="{{$user->Badge}}" name="Badge" required>  
                             @else
-                              <input type="text" class="form-control" id="inputBadge" placeholder="Insérez nouveau numéro de badge/tag" name="Badge">
+                              <input type="text" class="form-control" id="inputBadge" placeholder="Insérez nouveau numéro de badge/tag" name="Badge" required>
                             @endif
                           </div>
                         </div>
@@ -72,14 +75,14 @@
                         <div class="col">
                           <div class="form-group">
                             <label for="inputEmail">Email*</label>
-                              <input type="email" class="form-control" id="inputEmail" value="{{$user->email}}" name="email">
+                              <input type="email" class="form-control" id="inputEmail" value="{{$user->email}}" name="email" required>
                           </div>
                         </div>
 
                         <div class="col">
                           <div class="form-group">
                             <label for="inputPwd">Mot de passe*</label>
-                            <input type="password" class="form-control" id="inputPwd" placeholder="Insérez nouveau mot de passe" name="password">
+                            <input type="password" class="form-control" id="inputPwd" placeholder="Insérez nouveau mot de passe" name="password" required>
                           </div>
                         </div>
                       </div>
@@ -91,7 +94,7 @@
 
                       <div class="form-group">
                         <label for="inputRole">Rôle de l'utilisateur</label>
-                        <select id="inputRole" class="form-control custom-select" name="RoleId">
+                        <select id="inputRole" class="form-control custom-select" name="RoleId" required>
                           @foreach ($roleData as $role)
                             @if($role->Role_Name == $user_role[0]->Role_Name)
                             <option value="{{$role->id}}" selected>{{$role->Role_Name}}</option>
@@ -104,7 +107,7 @@
 
                       <div class="form-group">
                         <label for="inputJob">Job de l'utilisateur</label>
-                        <select id="inputJob" class="form-control custom-select" name="JobId">
+                        <select id="inputJob" class="form-control custom-select" name="JobId" required>
                           @foreach ($jobData as $job)
                             @if($job->Job_Name == $user_job[0]->Job_Name)
                             <option value="{{$job->id}}" selected>{{$job->Job_Name}}</option>

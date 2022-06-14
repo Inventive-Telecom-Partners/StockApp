@@ -46,6 +46,9 @@
                   <div class="row">
                       <h3><b>Modification du stock :</b> {{$stock->Stock_Name}}</h3>
                   </div>
+                  <div class="row">
+                      *Champs requis
+                    </div>
                     <form action="{{url('admin/updateStock/'.$stock->id)}}" method="post">
                       @csrf 
                       @method('PUT')
@@ -53,14 +56,14 @@
                         <div class="col">
                           <div class="form-group">
                             <label for="inputStockName">Nom*</label>
-                            <input type="text" id="inputStockName" class="form-control" value="{{$stock->Stock_Name}}" name="StockName">
+                            <input type="text" id="inputStockName" class="form-control" value="{{$stock->Stock_Name}}" name="StockName" required>
                           </div>
                         </div>
 
                         <div class="col">
                           <div class="form-group">
                             <label for="inputStockDesc">Description*</label>
-                              <input type="text" class="form-control" id="inputStockDesc" value="{{$stock->Description}}" name="StockDesc">  
+                              <input type="text" class="form-control" id="inputStockDesc" value="{{$stock->Description}}" name="StockDesc" required>  
                           </div>
                         </div>
                       </div>

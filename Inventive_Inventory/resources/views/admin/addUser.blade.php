@@ -171,15 +171,17 @@
                   <div class="tab-pane" id="addJob">
                   <form action="/admin/createJob" method="post">
                   @csrf
-
+                    <div class="row">
+                      *Champs requis
+                    </div>
                         <div class="form-group">
-                          <label for="inputJobName">Intitulé</label>
-                          <input type="text" id="inputJobName" class="form-control" placeholder="Intitulé du job" name="JobName">
+                          <label for="inputJobName">Intitulé*</label>
+                          <input type="text" id="inputJobName" class="form-control" placeholder="Intitulé du job" name="JobName" required>
                         </div>
 
                         <div class="form-group">
-                          <label for="inputJobDesc">Description</label>
-                          <input type="text" id="inputJobDesc" class="form-control" placeholder="Description du job" name="JobDescription">
+                          <label for="inputJobDesc">Description*</label>
+                          <input type="text" id="inputJobDesc" class="form-control" placeholder="Description du job" name="JobDescription" required>
                         </div>
 
                     <a href="{{url('/admin/adduser')}}" class="btn btn-secondary">Annulé</a>

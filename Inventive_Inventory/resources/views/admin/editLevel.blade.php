@@ -46,6 +46,9 @@
                   <div class="row">
                       <h3><b>Modification de l'étage :</b> {{$level->Level_Name}} de l'étagère {{$shelf->Shelf_Name}}</h3>
                   </div>
+                  <div class="row">
+                      *Champs requis
+                    </div>
                     <form action="{{url('admin/updateLevel/'.$level->id)}}" method="post">
                       @csrf 
                       @method('PUT')
@@ -53,14 +56,14 @@
                         <div class="col">
                           <div class="form-group">
                             <label for="inputLevelName">Nom*</label>
-                            <input type="text" id="inputLevelName" class="form-control" value="{{$level->Level_Name}}" name="LevelName">
+                            <input type="text" id="inputLevelName" class="form-control" value="{{$level->Level_Name}}" name="LevelName" required>
                           </div>
                         </div>
 
                         <div class="col">
                           <div class="form-group">
                             <label for="inputLevelDesc">Description*</label>
-                              <input type="text" class="form-control" id="inputLevelDesc" value="{{$level->Description}}" name="LevelDesc">  
+                              <input type="text" class="form-control" id="inputLevelDesc" value="{{$level->Description}}" name="LevelDesc" required>  
                           </div>
                         </div>
                       </div>

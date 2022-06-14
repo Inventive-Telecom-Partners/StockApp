@@ -48,16 +48,19 @@
               <div class="card-body">
                 <div class="tab-content">
                   <div class="active tab-pane" id="addStock">
+                  <div class="row">
+                      *Champs requis
+                    </div>
                     <form action="/admin/createStock" method="post">
                     @csrf
                       <div class="form-group">
-                        <label for="inputName">Nom</label>
-                        <input type="text" id="inputName" class="form-control" placeholder="Nom du stock" name="Stock_Name">
+                        <label for="inputName">Nom*</label>
+                        <input type="text" id="inputName" class="form-control" placeholder="Nom du stock" name="Stock_Name" required>
                       </div>
 
                       <div class="form-group">
-                        <label for="inputDesc">Description</label>
-                        <input type="text" id="inputDesc" class="form-control" placeholder="Description du stock" name="Description">
+                        <label for="inputDesc">Description*</label>
+                        <input type="text" id="inputDesc" class="form-control" placeholder="Description du stock" name="Description" required>
                       </div>
 
                     <a href="{{url('/admin/manage')}}" class="btn btn-secondary">Annulé</a>
@@ -67,57 +70,17 @@
                   </div>
                   <!-- /.tab-pane addStock-->
 
-                  <div class="tab-pane" id="changeStock">
-                    <form>
-                      <div class="form-group">
-                        <label for="inputChStock">Stock à modifier</label>
-                        <select id="inputChStock" class="form-control custom-select">
-                          <option selected disabled>Sélectionner un stock</option>
-                            @foreach ($stockData as $stock)
-                              @if($stock->Stock_Name == "noStock")
-                              @else
-                              <option value="{{$stock->id}}">{{$stock->Stock_Name}}</option>
-                              @endif
-                            @endforeach
-                        </select>
-                      </div>
-                      
-                      <div class="form-group">
-                        <label for="inputName">Nom</label>
-                        <input type="text" id="inputName" class="form-control" placeholder="Nouveau nom du stock">
-                      </div>
-                      
-                      <div class="row">
-                        <div class="col">
-                          <div class="form-group">
-                            <label for="inputEtagere">Nombre d'étagères (1 à 30) </label>
-                            <input type="number" class="form-control" id="inputEtagere" placeholder="Nombre d'étagères" min="1" max="30">
-                          </div>
-                        </div>
-
-                        <div class="col">
-                          <div class="form-group">
-                            <label for="inputEtage">Nombre d'étages (1 à 15) </label>
-                            <input type="number" class="form-control" id="inputEtage" placeholder="Nombre d'étages" min="1" max="15">
-                          </div>
-                        </div>
-                      </div>
-
-                      <a href="{{url('/admin/manage')}}" class="btn btn-secondary">Annulé</a>
-                      <input type="submit" value="Modifier" class="btn btn-success float-right">
-                    </form>
-                  </div>
-                  <!-- /.tab-pane changeStock -->
-
-
                   <div class="tab-pane" id="addShelf">
+                  <div class="row">
+                      *Champs requis
+                    </div>
                     <form action="/admin/createShelf" method="post">
                     @csrf
 
                       <div class="form-group">
-                        <label for="inputShelfStock">Créer étagère pour le stock :</label>
-                        <select id="inputShelfStock" class="form-control custom-select" name="Stock">
-                          <option selected disabled>Sélectionner un stock</option>
+                        <label for="inputShelfStock">Créer étagère pour le stock :*</label>
+                        <select id="inputShelfStock" class="form-control custom-select" name="Stock" required>
+                          <option value="" selected disabled>Sélectionner un stock</option>
                             @foreach ($stockData as $stock)
                               @if($stock->Stock_Name == "noStock")
                               @else
@@ -128,13 +91,13 @@
                       </div>
 
                       <div class="form-group">
-                        <label for="inputShelfName">Nom</label>
-                        <input type="text" id="inputShelfName" class="form-control" placeholder="Nom de l'étagère" name="Shelf_Name">
+                        <label for="inputShelfName">Nom*</label>
+                        <input type="text" id="inputShelfName" class="form-control" placeholder="Nom de l'étagère" name="Shelf_Name" required>
                       </div>
 
                       <div class="form-group">
-                        <label for="inputShelfDesc">Description</label>
-                        <input type="text" id="inputShelfDesc" class="form-control" placeholder="Description de l'étagère" name="Description">
+                        <label for="inputShelfDesc">Description*</label>
+                        <input type="text" id="inputShelfDesc" class="form-control" placeholder="Description de l'étagère" name="Description" required>
                       </div>
 
                       <a href="{{url('/admin/manage')}}" class="btn btn-secondary">Annulé</a>
@@ -145,13 +108,16 @@
                   <!-- /.tab-pane addShelf-->
 
                   <div class="tab-pane" id="addLevel">
+                  <div class="row">
+                      *Champs requis
+                    </div>
                     <form action="/admin/createLevel" method="post">
                     @csrf
 
                       <div class="form-group">
-                        <label for="inputLevelShelf">Créer étage pour l'étagère :</label>
-                        <select id="inputLevelShelf" class="form-control custom-select" name="Shelf">
-                          <option selected disabled>Sélectionner une étagère</option>
+                        <label for="inputLevelShelf">Créer étage pour l'étagère :*</label>
+                        <select id="inputLevelShelf" class="form-control custom-select" name="Shelf" required>
+                          <option value="" selected disabled>Sélectionner une étagère</option>
                             @foreach ($shelfData as $shelf)
                               @if($shelf->Shelf_Name == "noShelf")
                               @else
@@ -162,13 +128,13 @@
                       </div>
 
                       <div class="form-group">
-                        <label for="inputLevelName">Nom</label>
-                        <input type="text" id="inputLevelName" class="form-control" placeholder="Nom de l'étage" name="Level_Name">
+                        <label for="inputLevelName">Nom*</label>
+                        <input type="text" id="inputLevelName" class="form-control" placeholder="Nom de l'étage" name="Level_Name" required>
                       </div>
 
                       <div class="form-group">
-                        <label for="inputLevelDesc">Description</label>
-                        <input type="text" id="inputLevelDesc" class="form-control" placeholder="Description de l'étage" name="Description">
+                        <label for="inputLevelDesc">Description*</label>
+                        <input type="text" id="inputLevelDesc" class="form-control" placeholder="Description de l'étage" name="Description" required>
                       </div>
 
                       <a href="{{url('/admin/manage')}}" class="btn btn-secondary">Annulé</a>
