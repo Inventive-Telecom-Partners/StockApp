@@ -56,7 +56,13 @@ Route::prefix('/admin')->middleware(['auth'])->group(function () {
     Route::put('updateStock/{stock_id}',[App\Http\Controllers\admin\StockController::class,'updateStock']);
     Route::delete('/deleteStock/{stock_id}',[App\Http\Controllers\admin\StockController::class,'deleteStock']);
     Route::post('/createShelf',[App\Http\Controllers\admin\StockController::class,'insertShelf']);
+    Route::get('/editShelf/{shelf_id}',[App\Http\Controllers\admin\StockController::class,'editShelf']);
+    Route::put('updateShelf/{shelf_id}',[App\Http\Controllers\admin\StockController::class,'updateShelf']);
+    Route::delete('/deleteShelf/{shelf_id}',[App\Http\Controllers\admin\StockController::class,'deleteShelf']);
     Route::post('/createLevel',[App\Http\Controllers\admin\StockController::class,'insertLevel']);
+    Route::get('/editLevel/{level_id}',[App\Http\Controllers\admin\StockController::class,'editLevel']);
+    Route::put('updateLevel/{level_id}',[App\Http\Controllers\admin\StockController::class,'updateLevel']);
+    Route::delete('/deleteLevel/{level_id}',[App\Http\Controllers\admin\StockController::class,'deleteLevel']);
     
     Route::get('/charts', [App\Http\Controllers\admin\ChartController::class,'index']);
     Route::get('/chartsAdmin', [App\Http\Controllers\admin\ChartController::class,'chartsAdmin']);

@@ -257,7 +257,7 @@
                                             <a href="{{ url ('admin/editLevel/'.$level->id)}}" class="btn btn-success">Modifier</a>
                                           </div>
                                           <div class="row" style="margin-top:10px;">
-                                            <form action="{{ url ('admin/deleteLevel/'.$shelf->id)}}" method="post">
+                                            <form action="{{ url ('admin/deleteLevel/'.$level->id)}}" method="post">
                                               @csrf
                                               @method('DELETE')
                                               <input type="submit" value="Supprimer" class="btn btn-danger">

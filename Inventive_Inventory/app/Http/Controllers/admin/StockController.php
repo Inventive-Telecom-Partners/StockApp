@@ -49,6 +49,23 @@ class StockController extends Controller
         return redirect()->back()->with('message', "Le stock a été supprimé");
     }
 
+    public function editStock($stock_id){
+        $stock = DB::table('stock')->where('id',$stock_id)->first();
+        return view('admin/editStock',['stock'=>$stock]);
+    }
+
+    public function updateStock(Request $request, $stock_id){
+        DB::table('stock')->where('id',$stock_id)->update([
+            'Stock_Name' => $request['StockName'],
+            'Description' => $request['StockDesc']
+        ]);
+        $StockName = DB::table('stock')->where('id',$stock_id)->get('Stock_Name')[0]->Stock_Name;
+        $notifDesc="Le stock " . $StockName . " a été modifié par " . Auth::user()->Name;
+        $notifiStockUpdate = array("Description"=>$notifDesc,"idNotifType"=>5,"idUser"=>Auth::user()->id,"Read"=>0,'created_at'=>date("Y-m-d H:i:s", strtotime('+2 hours')));
+        DB::table("notification")->insert($notifiStockUpdate);
+        return redirect("/admin/manage")->with('message', "Le stock a été modifié");
+    }
+
     /*Function for Shelf */
 
     public function insertShelf(Request $request){
@@ -75,6 +92,24 @@ class StockController extends Controller
         return redirect()->back()->with('message', "L'étagère a été supprimée");
     }
 
+    public function editShelf($shelf_id){
+        $shelf = DB::table('shelf')->where('id',$shelf_id)->first();
+        $stock = DB::table('stock')->where('id',$shelf->idStock)->first();
+        return view('admin/editShelf',['shelf'=>$shelf,'stock'=>$stock]);
+    }
+
+    public function updateShelf(Request $request, $shelf_id){
+        DB::table('shelf')->where('id',$shelf_id)->update([
+            'Shelf_Name' => $request['ShelfName'],
+            'Description' => $request['ShelfDesc']
+        ]);
+        $ShelfName = DB::table('shelf')->where('id',$shelf_id)->get('Shelf_Name')[0]->Shelf_Name;
+        $notifDesc="L'étagère " . $ShelfName . " a été modifié par " . Auth::user()->Name;
+        $notifiStockUpdate = array("Description"=>$notifDesc,"idNotifType"=>5,"idUser"=>Auth::user()->id,"Read"=>0,'created_at'=>date("Y-m-d H:i:s", strtotime('+2 hours')));
+        DB::table("notification")->insert($notifiStockUpdate);
+        return redirect("/admin/manage")->with('message', "L'étagère a été modifiée");
+    }
+
     /*Function for Level */
 
     public function insertLevel(Request $request){
@@ -90,5 +125,32 @@ class StockController extends Controller
         $dataNotif = array("Description"=>$notifDesc,"idNotifType"=>5,"idUser"=>Auth::user()->id,"Read"=>0,'created_at'=>date("Y-m-d H:i:s", strtotime('+2 hours')));
         DB::table("notification")->insert($dataNotif);
         return redirect()->back();
+    }
+
+    public function deleteLevel($level_id){
+        $LevelName = DB::table('level')->where('id',$level_id)->get('Level_Name')[0]->Level_Name;
+        $notifDesc="L'étage " . $LevelName . " a été supprimée par " . Auth::user()->Name;
+        $notifi = array("Description"=>$notifDesc,"idNotifType"=>5,"idUser"=>Auth::user()->id,"Read"=>0,'created_at'=>date("Y-m-d H:i:s", strtotime('+2 hours')));
+        DB::table("notification")->insert($notifi);
+        DB::table('level')->where('id',$level_id)->delete();
+        return redirect()->back()->with('message', "L'étage a été supprimé");
+    }
+
+    public function editLevel($level_id){
+        $level = DB::table('level')->where('id',$level_id)->first();
+        $shelf = DB::table('shelf')->where('id',$level->idShelf)->first();
+        return view('admin/editLevel',['level'=>$level,'shelf'=>$shelf]);
+    }
+
+    public function updateLevel(Request $request, $level_id){
+        DB::table('level')->where('id',$level_id)->update([
+            'Level_Name' => $request['LevelName'],
+            'Description' => $request['LevelDesc']
+        ]);
+        $LevelName = DB::table('level')->where('id',$level_id)->get('Level_Name')[0]->Level_Name;
+        $notifDesc="L'étage " . $LevelName . " a été modifié par " . Auth::user()->Name;
+        $notifiStockUpdate = array("Description"=>$notifDesc,"idNotifType"=>5,"idUser"=>Auth::user()->id,"Read"=>0,'created_at'=>date("Y-m-d H:i:s", strtotime('+2 hours')));
+        DB::table("notification")->insert($notifiStockUpdate);
+        return redirect("/admin/manage")->with('message', "L'étage a été modifié");
     }
 }
