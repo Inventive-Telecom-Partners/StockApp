@@ -68,12 +68,16 @@ Route::prefix('/admin')->middleware(['auth'])->group(function () {
     Route::get('/chartsAdmin', [App\Http\Controllers\admin\ChartController::class,'chartsAdmin']);
 
     Route::get('/report', [App\Http\Controllers\admin\ReportController::class,'index']);
-    Route::get('/sales', [App\Http\Controllers\admin\SalesController::class,'index']); 
-    Route::get('/logout', [App\Http\Controllers\admin\AdminController::class,'logout']);
 
+    Route::get('/item', [App\Http\Controllers\admin\SalesController::class,'index']); 
+    Route::get('/sales', [App\Http\Controllers\admin\SalesController::class,'display']);
     Route::get('/hist', function () {
         return view('hist');
     });
+
+    Route::get('/logout', [App\Http\Controllers\admin\AdminController::class,'logout']);
+
+    
 
 
 });

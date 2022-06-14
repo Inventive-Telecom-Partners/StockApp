@@ -202,7 +202,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="{{url('/admin/sales')}}" class="nav-link {{(app('request')->route()->uri() == 'admin/sales') ? 'active' : ''}}">
+            <a href="{{url('/admin/item')}}" class="nav-link {{(app('request')->route()->uri() == 'admin/item') ? 'active' : ''}}">
               <i class="nav-icon fas fa-pallet"></i>
               <p>
                 Gestion des objets
@@ -344,6 +344,15 @@
       "responsive": true, "lengthChange": false, "autoWidth": false,
       "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
     }).buttons().container().appendTo('#stock5_wrapper .col-md-6:eq(0)');
+  });
+</script>
+
+<script>
+  $(function () {
+    $("#objet").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#objet_wrapper .col-md-6:eq(0)');
   });
 </script>
 

@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 class SalesController extends Controller
 {
     public function index(){
+        return view('admin/item');
+    }
+
+    public function display(){
         return view('admin/ebay');
     }
 }
