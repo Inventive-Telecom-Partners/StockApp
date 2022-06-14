@@ -321,6 +321,31 @@
     }).buttons().container().appendTo('#5_wrapper .col-md-6:eq(0)');
   });
 </script>
+<!-- Pour voir stock -->
+<script>
+  $(function () {
+    $("#stock1").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#stock1_wrapper .col-md-6:eq(0)');
+    $("#stock2").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#stock2_wrapper .col-md-6:eq(0)');
+    $("#stock3").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#stock3_wrapper .col-md-6:eq(0)');
+    $("#stock4").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#stock4_wrapper .col-md-6:eq(0)');
+    $("#stock5").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#stock5_wrapper .col-md-6:eq(0)');
+  });
+</script>
 
 <!-- Chart specific script -->
 <script>

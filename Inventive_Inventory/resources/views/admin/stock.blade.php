@@ -12,127 +12,135 @@
       </div><!-- /.container-fluid -->
     </section>
 
-
+    @foreach($stockData as $stock)
+    @if($stock->Stock_Name == "noStock")
+    @else
     <section class="content">
       <div class="container-fluid">
         <div class="row">
-              <div class="col-md-12">
-                <div class="card collapsed-card">
-                  <div class="card-header">
-                    <h5 class="card-title" data-card-widget="collapse">Stock Vente <span class="badge badge-info right">156</span></h5>
-
-                    <div class="card-tools">
-                      <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                        <i class="fas fa-plus"></i>
-                      </button>
-                    </div>
-                  </div>
-                  <!-- /.card-header -->
-                  <div class="card-body" style="display: none;">
-                  <table id="example1" class="table table-bordered table-striped">
+          <div class="col-md-12">
+            <div class="card collapsed-card">
+              <div class="card-header">
+                <h5 class="card-title" data-card-widget="collapse">{{$stock->Stock_Name}} <span class="badge badge-info right">$count</span></h5>
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-plus"></i>
+                  </button>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body" style="display: none;">
+                <table id="stock{{$stock->id}}" class="table table-bordered table-striped">
                   <thead>
                     <tr>
-                      <th>Numéro</th>
-                      <th>Client</th>
-                      <th>Date Reservation</th>
-                      <th>Montant</th>
-                      <th>Status</th>
-                      <th></th>
-                      <th></th>
+                      <th>Etagère</th>
+                      <th>Etage</th>
+                      <th>Marque</th>
+                      <th>Catégorie</th>
+                      <th>Description</th>
+                      <th>Numéro de produit</th>
+                      <th>Numéro de série</th>
+                      <th>Couleur</th>
+                      <th>Etat</th>
                     </tr>
-                    </thead>
-                    <tbody>
-
-                  
-
-                    </tbody>
-                  </table>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>      
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <th>Etagère</th>
+                      <th>Etage</th>
+                      <th>Marque</th>
+                      <th>Catégorie</th>
+                      <th>Description</th>
+                      <th>Numéro de produit</th>
+                      <th>Numéro de série</th>
+                      <th>Couleur</th>
+                      <th>Etat</th>
+                    </tr>
+                  </tfoot>
+                </table>
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
+    @endif
+    @endforeach
+
     <section class="content">
       <div class="container-fluid">
         <div class="row">
-              <div class="col-md-12">
-                <div class="card collapsed-card">
-                  <div class="card-header">
-                    <h5 class="card-title" data-card-widget="collapse">Stock Maintenance <span class="badge badge-info right">Ici se retrouve le nombre d'item dans le stock (ex 459)</span></h5>
-
-                    <div class="card-tools">
-                      <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                        <i class="fas fa-plus"></i>
-                      </button>
-                    </div>
-                  </div>
-                  <!-- /.card-header -->
-                  <div class="card-body" style="display: none;">
-                  <table id="example2" class="table table-bordered table-striped">
+          <div class="col-md-12">
+            <div class="card collapsed-card">
+              <div class="card-header">
+                <h5 class="card-title" data-card-widget="collapse">Tous les stocks <span class="badge badge-info right">$count Ici se retrouve le nombre d'item dans le stock (ex 459)</span></h5>
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-plus"></i>
+                  </button>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body" style="display: none;">
+                <table id="stock{{$stock->id}}" class="table table-bordered table-striped">
                   <thead>
                     <tr>
-                      <th>Numéro</th>
-                      <th>Client</th>
-                      <th>Date Reservation</th>
-                      <th>Montant</th>
-                      <th>Status</th>
-                      <th></th>
-                      <th></th>
+                      <th>Etagère</th>
+                      <th>Etage</th>
+                      <th>Marque</th>
+                      <th>Catégorie</th>
+                      <th>Description</th>
+                      <th>Numéro de produit</th>
+                      <th>Numéro de série</th>
+                      <th>Couleur</th>
+                      <th>Etat</th>
                     </tr>
-                    </thead>
-                    <tbody>
-
-                   
-
-                    </tbody>
-                  </table>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>      
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <th>Etagère</th>
+                      <th>Etage</th>
+                      <th>Marque</th>
+                      <th>Catégorie</th>
+                      <th>Description</th>
+                      <th>Numéro de produit</th>
+                      <th>Numéro de série</th>
+                      <th>Couleur</th>
+                      <th>Etat</th>
+                    </tr>
+                  </tfoot>
+                </table>
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-    
-    <section class="content">
-      <div class="container-fluid">
-        <div class="row">
-              <div class="col-md-12">
-                <div class="card">
-                  <div class="card-header">
-                    <h5 class="card-title" data-card-widget="collapse">TOUS LES STOCK</h5>
-
-                    <div class="card-tools">
-                      <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                        <i class="fas fa-minus"></i>
-                      </button>
-                    </div>
-                  </div>
-                  <!-- /.card-header -->
-                  <div class="card-body" style="display: block;">
-                  <table id="example6" class="table table-bordered table-striped">
-                  <thead>
-                    <tr>
-                      <th>Numéro</th>
-                      <th>Client</th>
-                      <th>Date Reservation</th>
-                      <th>Montant</th>
-                      <th>Status</th>
-                      <th></th>
-                      <th></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-
-                    
-
-                    </tbody>
-                  </table>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-                    
+                     
 @endsection    

@@ -14,7 +14,10 @@ use Illuminate\Support\Facades\Auth;
 class StockController extends Controller
 {
     public function index(){
-        return view('admin/stock');
+        $stockData= Stock::all();
+        $shelfData = Shelf::all();
+        $levelData = Level::all();
+        return view('admin/stock',['stockData'=>$stockData,'shelfData'=>$shelfData,'levelData'=>$levelData]);
     }
 
     public function manage(){
