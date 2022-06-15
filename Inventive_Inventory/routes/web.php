@@ -17,6 +17,7 @@ Route::get('/',[App\Http\Controllers\AccueilController::class, 'index']);
 Route::get('/stockIn',[App\Http\Controllers\AccueilController::class, 'stockIn']);
 Route::post('/stockInCreate',[App\Http\Controllers\AccueilController::class,'insertStockIn']);
 Route::get('/stockOut',[App\Http\Controllers\AccueilController::class, 'stockOut']);
+Route::get('/stockOut2/{serial}',[App\Http\Controllers\AccueilController::class, 'stockOut2']);
 Route::delete('/stockOutDel',[App\Http\Controllers\AccueilController::class, 'stockOutDel']);
 Route::get('/research',[App\Http\Controllers\AccueilController::class, 'research']);
 

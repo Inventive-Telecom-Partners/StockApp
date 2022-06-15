@@ -19,7 +19,6 @@
             <th>Numéro de produit</th>
             <th>Numéro de série</th>
             <th>Couleur</th>
-            <th>Etat</th>
             <th>Stock Out</th>
           </tr>
         </thead>
@@ -45,12 +44,10 @@
                                       <td>{{$element->Product_Number}}</td>
                                       <td>{{$element->Serial_Number}}</td>
                                       <td>{{$element->color}}</td>
-                                      <td></td>
                                       <td>
                                         <div class="row" style="margin-top:10px;">
-                                          <form action="{{ url ('/stockOut/'.$element->Serial_Number)}}" method="post">
+                                          <form action="{{ url ('/stockOut2/'.$element->Serial_Number)}}" method="get">
                                             @csrf
-                                            @method('DELETE')
                                             <input type="submit" value="Sortir du stock" class="btn btn-danger">
                                           </form>
                                         </div>
@@ -79,7 +76,6 @@
             <th>Numéro de produit</th>
             <th>Numéro de série</th>
             <th>Couleur</th>
-            <th>Etat</th>
             <th>Stock Out</th>
           </tr>
         </tfoot>

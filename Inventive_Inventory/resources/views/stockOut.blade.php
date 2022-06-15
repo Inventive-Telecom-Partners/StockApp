@@ -6,10 +6,10 @@
   <!-- /.login-logo -->
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href="../../index2.html" class="h3"><b>Formulaire de sortie</b></a>
+      <h3><b>Formulaire de sortie</b></h3>
     </div>
     <div class="card-body">
-      <p class="login-box-msg">Veuillez entrer les informations de l'objet sortis:</p>
+      <p class="login-box-msg">Veuillez entrer les informations de l'objet sorti:</p>
 
       <form action="/stockOutDel" method="post">
         @csrf
@@ -23,7 +23,11 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Numéro de série" name="Serial">
+          @if($Serial == "noserialnumber")
+            <input type="text" class="form-control" placeholder="Numéro de série" name="Serial">
+          @else
+            <input type="text" class="form-control" value="{{$Serial}}" placeholder="Numéro de série" name="Serial">
+          @endif
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fa fa-barcode"></span>

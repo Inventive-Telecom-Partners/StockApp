@@ -32,7 +32,7 @@
   <link rel="stylesheet" href="{{asset('assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
   <link rel="stylesheet" href="{{asset('assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body id="showhide"  class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
   <!-- Preloader -->
@@ -45,7 +45,7 @@
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        <a id="lol" class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="/" class="nav-link">Retour à l'accueil</a>
@@ -117,7 +117,7 @@
           
         </div>
         <div class="info">
-          <a href="index.php?show_user" class="d-block">{{auth()->user()->Name}}</a>
+          <a href="/admin/profil" class="d-block">{{auth()->user()->Name}}</a>
         </div>
       </div>
 
@@ -296,9 +296,8 @@
 <script src="{{asset('assets/plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
 <script src="{{asset('assets/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
 <script src="{{asset('assets/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
+
 <!-- DataTables specific script -->
-
-
 <script>
   $(function () {
     $("table.display").DataTable({
@@ -506,6 +505,12 @@
 //Date range picker
     $('#reservation').daterangepicker()
   })
+</script>
+<script>
+  $('#lol').click(function() {
+    $('#showhide').toggleClass('sidebar-mini layout-fixed sidebar-open');
+    $('#showhide').toggleClass('sidebar-mini layout-fixed sidebar-closed sidebar-collapse');
+});
 </script>
 </body>
 </html>

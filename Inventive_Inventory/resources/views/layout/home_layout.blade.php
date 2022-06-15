@@ -114,12 +114,10 @@
                     },
                     "buttons": {
                         "colvis": 'Colonnes',
-                        "copy": 'Copier',
-                        "print": 'Imprimer'
                     }
                 },
       "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+      "buttons": ["colvis"]
     }).buttons().container().appendTo('.dataTables_wrapper .col-md-6:even');
   });
 </script>
