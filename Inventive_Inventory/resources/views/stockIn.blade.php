@@ -107,11 +107,17 @@
                             <option value="{{$level->id}}">
                                 @foreach($shelfData as $shelf)
                                     @if($shelf->id == $level->idShelf)
-                                        @foreach($stockData as $stock)
-                                            @if($stock->id == $shelf->idStock)
-                                                {{$stock->Stock_Name}} - {{$shelf->Shelf_Name}} - {{$level->Level_Name}}
-                                            @endif
-                                        @endforeach
+                                        @if($shelf->Shelf_Name == "noShelf")
+                                        @else
+                                            @foreach($stockData as $stock)
+                                                @if($stock->id == $shelf->idStock)
+                                                    @if($stock->Stock_Name == "noStock")
+                                                    @else
+                                                        {{$stock->Stock_Name}} - {{$shelf->Shelf_Name}} - {{$level->Level_Name}}
+                                                    @endif    
+                                                @endif
+                                            @endforeach
+                                        @endif
                                     @endif
                                 @endforeach
                             </option>
