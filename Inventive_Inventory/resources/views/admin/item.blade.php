@@ -63,7 +63,7 @@
                                               <td>{{$element->color}}</td>
                                               <td>
                                               <div class="row" style="margin-top:10px;">
-                                                <form action="{{ url ('admin/seeItem/'.$element->id)}}" method="get">
+                                                <form action="{{ url ('admin/seeItem/'.$element->id . '/' . $level->id )}}" method="get">
                                                   @csrf
                                                   <input type="submit" value="Informations sur l'objet" class="btn btn-info">
                                                 </form>
