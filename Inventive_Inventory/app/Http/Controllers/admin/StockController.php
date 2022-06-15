@@ -14,10 +14,14 @@ use Illuminate\Support\Facades\Auth;
 class StockController extends Controller
 {
     public function index(){
+        $changeLoca = DB::table("change_location")->get();
+        $elementData = DB::table("element")->get();
+        $categoryData = DB::table("category")->get();
+        $brandData = DB::table("brand")->get();
         $stockData= Stock::all();
         $shelfData = Shelf::all();
         $levelData = Level::all();
-        return view('admin/stock',['stockData'=>$stockData,'shelfData'=>$shelfData,'levelData'=>$levelData]);
+        return view('admin/stock',['stockData'=>$stockData,'shelfData'=>$shelfData,'levelData'=>$levelData,'changeLoca'=>$changeLoca,'elementData'=>$elementData, 'categoryData'=>$categoryData,'brandData'=>$brandData]);
     }
 
     public function manage(){
