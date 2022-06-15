@@ -29,9 +29,7 @@
                 <table id="objet" class="table table-bordered table-striped">
                   <thead>
                     <tr>
-                      <th>Stock</th>
-                      <th>Etagère</th>
-                      <th>Etage</th>
+                      <th>Emplacement</th>
                       <th>Marque</th>
                       <th>Catégorie</th>
                       <th>Description</th>
@@ -43,25 +41,54 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>      
+                  @foreach($stockData as $stock)
+                    @foreach($shelfData as $shelf)
+                      @if($stock->id == $shelf->idStock)
+                        @foreach($levelData as $level)
+                          @if($shelf->id == $level->idShelf) 
+                            @foreach($changeLoca as $change)
+                              @if($level->id == $change->idLevel)
+                                @foreach($elementData as $element)
+                                  @if($change->idElement == $element->id)
+                                    @foreach($categoryData as $cat)
+                                      @if($cat->id == $element->idCategory)
+                                        @foreach($brandData as $brand)
+                                          @if($brand->id == $element->idBrand)
+                                            <tr>
+                                              <td>{{$stock->Stock_Name}} - {{$shelf->Shelf_Name}} - {{$level->Level_Name}}</td>
+                                              <td>{{$cat->Category_Name}}</td>
+                                              <td>{{$brand->Brand_Name}}</td>
+                                              <td>{{$element->Description}}</td>
+                                              <td>{{$element->Product_Number}}</td>
+                                              <td>{{$element->Serial_Number}}</td>
+                                              <td>{{$element->color}}</td>
+                                              <td></td>
+                                              <td>
+                                              <div class="row" style="margin-top:10px;">
+                                                <form action="{{ url ('/seeItem')}}" method="get">
+                                                  @csrf
+                                                  <input type="submit" value="Informations sur l'objet" class="btn btn-info">
+                                                </form>
+                                              </div>
+                                              </td>
+                                            </tr>
+                                          @endif
+                                        @endforeach
+                                      @endif
+                                    @endforeach
+                                  @endif
+                                @endforeach
+                              @endif
+                            @endforeach
+                          @endif 
+                        @endforeach
+                      @endif
+                    @endforeach 
+                  @endforeach       
                   </tbody>
                   <tfoot>
                     <tr>
-                      <th>Stock</th>
-                      <th>Etagère</th>
-                      <th>Etage</th>
+                      <th>Emplacement</th>
                       <th>Marque</th>
                       <th>Catégorie</th>
                       <th>Description</th>
