@@ -17,7 +17,7 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h5 class="card-title" data-card-widget="collapse">Tous les stocks <span class="badge badge-info right">$count Ici se retrouve le nombre d'item dans le stock (ex 459)</span></h5>
+                <h5 class="card-title" data-card-widget="collapse">Tous les stocks <span class="badge badge-info right">{{$countData}}</span></h5>
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">
                     <i class="fas fa-minus"></i>
@@ -36,7 +36,6 @@
                       <th>Numéro de produit</th>
                       <th>Numéro de série</th>
                       <th>Couleur</th>
-                      <th>Etat</th>
                       <th>Show</th>
                     </tr>
                   </thead>
@@ -62,10 +61,9 @@
                                               <td>{{$element->Product_Number}}</td>
                                               <td>{{$element->Serial_Number}}</td>
                                               <td>{{$element->color}}</td>
-                                              <td></td>
                                               <td>
                                               <div class="row" style="margin-top:10px;">
-                                                <form action="{{ url ('/seeItem')}}" method="get">
+                                                <form action="{{ url ('admin/seeItem/'.$element->id)}}" method="get">
                                                   @csrf
                                                   <input type="submit" value="Informations sur l'objet" class="btn btn-info">
                                                 </form>
@@ -95,7 +93,6 @@
                       <th>Numéro de produit</th>
                       <th>Numéro de série</th>
                       <th>Couleur</th>
-                      <th>Etat</th>
                       <th>Show</th>
                     </tr>
                   </tfoot>

@@ -64,8 +64,9 @@ Route::prefix('/admin')->middleware(['auth'])->group(function () {
 
     Route::get('/report', [App\Http\Controllers\admin\ReportController::class,'index']);
 
-    Route::get('/item', [App\Http\Controllers\admin\SalesController::class,'index']); 
-    Route::get('/sales', [App\Http\Controllers\admin\SalesController::class,'display']);
+    Route::get('/item', [App\Http\Controllers\admin\SalesController::class,'index']);
+    Route::get('/seeItem/{element_id}', [App\Http\Controllers\admin\SalesController::class,'display']); 
+
     Route::get('/hist', function () {
         return view('hist');
     });

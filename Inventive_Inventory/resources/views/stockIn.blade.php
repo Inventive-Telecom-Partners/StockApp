@@ -119,9 +119,9 @@
                             @endforeach
                         </select>
                     </div>
-                    <label for="PerishDate" class="col-form-label">Etat</label>
+                    <label for="PerishDate" class="col-form-label">Etat*</label>
                     <div class="input-group mb-3">
-                        <select class="custom-select" aria-label="Default select example" name="Etat">
+                        <select class="custom-select" aria-label="Default select example" name="Etat" required>
                             <option value='' selected>Etat</option>
                             @foreach($state as $i)
                             <option value="{{$i->id}}">{{$i->State_Name}}</option>
