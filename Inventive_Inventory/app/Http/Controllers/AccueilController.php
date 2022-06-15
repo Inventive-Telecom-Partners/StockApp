@@ -59,6 +59,10 @@ class AccueilController extends Controller
     public function stockOut(){
         return view('stockOut');
     }
+    public function stockOutDel(){
+        
+        return redirect('/')->with('message', "L'objet est enlevé du stock");
+    }
     
     public function research(){
         $changeLoca = DB::table("change_location")->get();

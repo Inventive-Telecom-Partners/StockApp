@@ -11,9 +11,11 @@
     <div class="card-body">
       <p class="login-box-msg">Veuillez entrer les informations de l'objet sortis:</p>
 
-      <form action="../../index3.html" method="post">
+      <form action="/stockOutDel" method="post">
+        @csrf
+        @method('DELETE')
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Badge Utilisateur">
+          <input type="text" class="form-control" placeholder="Badge Utilisateur" name="Badge">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fa fa-id-badge"></span>
@@ -21,7 +23,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Numéro de série">
+          <input type="text" class="form-control" placeholder="Numéro de série" name="Serial">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fa fa-barcode"></span>
@@ -31,7 +33,7 @@
         <div class="row">
           <!-- /.col -->
           <div class="col-12">
-            <button type="submit" class="btn btn-primary btn-block">Sortir l'objet</button>
+            <button type="submit" class="btn btn-danger btn-block">Sortir l'objet</button>
           </div>
           <!-- /.col -->
         </div>

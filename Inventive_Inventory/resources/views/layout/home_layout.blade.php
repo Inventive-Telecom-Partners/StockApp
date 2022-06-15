@@ -91,13 +91,37 @@
     <script src="{{asset('assets/plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
     <script src="{{asset('assets/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
     <script src="{{asset('assets/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
+
     <script>
-        $(function () {
-            $("#objet").DataTable({
-            "responsive": true, "lengthChange": false, "autoWidth": false,
-            "buttons": ["colvis"]
-            }).buttons().container().appendTo('#objet_wrapper .col-md-6:eq(0)');
-        });
-    </script>
+  $(function () {
+    $("table.display").DataTable({
+      "language": {
+                    "sProcessing":     "Traitement en cours...",
+                    "sSearch":         "Rechercher&nbsp;:",
+                    "sLengthMenu":     "Afficher _MENU_ &eacute;l&eacute;ments",
+                    "sInfo":           "Affichage de l'&eacute;l&eacute;ment _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
+                    "sInfoEmpty":      "Affichage de l'&eacute;l&eacute;ment 0 &agrave; 0 sur 0 &eacute;l&eacute;ment",
+                    "sInfoFiltered":   "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+                    "sInfoPostFix":    "",
+                    "sLoadingRecords": "Chargement en cours...",
+                    "sZeroRecords":    "Aucun &eacute;l&eacute;ment &agrave; afficher",
+                    "sEmptyTable":     "Aucune donn&eacute;e disponible dans le tableau",
+                    "oPaginate": {
+                        "sFirst":      "Premier",
+                        "sPrevious":   "Pr&eacute;c&eacute;dent",
+                        "sNext":       "Suivant",
+                        "sLast":       "Dernier"
+                    },
+                    "buttons": {
+                        "colvis": 'Colonnes',
+                        "copy": 'Copier',
+                        "print": 'Imprimer'
+                    }
+                },
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('.dataTables_wrapper .col-md-6:even');
+  });
+</script>
     </body>
 </html>

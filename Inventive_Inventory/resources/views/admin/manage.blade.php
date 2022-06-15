@@ -178,7 +178,7 @@
                             <div class="row">
                               <p><b><u>Description :</u></b> {{$stock->Description}}</p>
                             </div>
-                            <table id="{{$stock->id}}" class="table table-bordered table-striped">
+                            <table id="{{$stock->id}}" class="table table-bordered table-striped display">
                                 <thead>
                                   <tr>
                                     <th>Etagère</th>

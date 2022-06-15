@@ -26,7 +26,7 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body" >
-                <table id="objet" class="table table-bordered table-striped">
+                <table id="objet" class="table table-bordered table-striped display">
                   <thead>
                     <tr>
                       <th>Emplacement</th>

@@ -31,7 +31,7 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body" style="display: none;">
-                <table id="stock{{$stock->id}}" class="table table-bordered table-striped">
+                <table id="stock{{$stock->id}}" class="table table-bordered table-striped display">
                   <thead>
                     <tr>
                       <th>Etagère</th>
