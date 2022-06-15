@@ -9,6 +9,7 @@ use App\Models\Stock;
 use App\Models\Shelf;
 use App\Models\Level;
 use Illuminate\Support\Facades\Auth;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class SalesController extends Controller
 {

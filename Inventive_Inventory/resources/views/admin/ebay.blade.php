@@ -51,6 +51,10 @@
                 {{$Price}} €
                 </h2>
               </div>
+              <div class="visible-print text-center" style="margin-top:2em">
+                {!! QrCode::size(300)->generate(Request::url()); !!}
+                <p>Qr code de l'objet</p>
+              </div>
 
             </div>
           </div>
