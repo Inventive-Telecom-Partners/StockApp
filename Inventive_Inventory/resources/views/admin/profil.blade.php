@@ -69,7 +69,7 @@
             <div class="card">
               <div class="card-header p-2">
                 <ul class="nav nav-pills">
-                  <li class="nav-item"><a class="nav-link active" href="#timeline" data-toggle="tab">Historique des transactions</a></li>
+                  <li class="nav-item"><a class="nav-link active" href="#timeline" data-toggle="tab">Notifications</a></li>
                   <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Paramètres de profil</a></li>
                 </ul>
               </div><!-- /.card-header -->
@@ -80,82 +80,61 @@
                     <!-- The timeline -->
                     <div class="timeline timeline-inverse">
                       <!-- timeline time label -->
-                      <div class="time-label">
-                        <span class="bg-primary">
-                          10 Feb. 2014
-                        </span>
-                      </div>
-                      <!-- /.timeline-label -->
-                      <!-- timeline item -->
-                      <div>
-                        <i class="fas fa-box-open bg-danger"></i>
+                      
+                      @foreach($notifData as $notif)
+                      @if($notif->idNotifType == 8)
+                        <!-- timeline item -->
+                        <div>
+                          <i class="fas fa-box-open bg-danger"></i>
 
-                        <div class="timeline-item">
-                          <span class="time"><i class="far fa-clock"></i> 12:05</span>
+                          <div class="timeline-item">
+                            <span class="time"><i class="far fa-clock"></i>{{$notif->created_at}}</span>
 
-                          <h3 class="timeline-header"><a href="#">Stock 'untel' Out</a></h3>
+                            <h3 class="timeline-header"><a href="#">Stock Out</a></h3>
 
-                          <div class="timeline-body">
-                            L'objet 'untel' a été enlevé du stock 'untel' par 'untel'.
+                            <div class="timeline-body">
+                              {{$notif->Description}}
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      <!-- END timeline item -->
-                      <!-- timeline item -->
-                      <div>
-                        <i class="fas fa-box bg-success"></i>
+                        <!-- END timeline item -->
+                        @elseif($notif->idNotifType == 9)
+                        <!-- timeline item -->
+                        <div>
+                          <i class="fas fa-arrow-alt-circle-right bg-info"></i>
 
-                        <div class="timeline-item">
-                          <span class="time"><i class="far fa-clock"></i> 5 mins ago</span>
+                          <div class="timeline-item">
+                            <span class="time"><i class="far fa-clock"></i>{{$notif->created_at}}</span>
 
-                          <h3 class="timeline-header"><a href="#">Stock 'untel' In</a> 
-                          </h3>
-                          <div class="timeline-body">
-                            L'objet 'untel' a été ajouté dans le stock 'untel' par 'untel'.
+                            <h3 class="timeline-header"><a href="#">Stock Déplacement</a></h3>
+
+                            <div class="timeline-body">
+                              {{$notif->Description}}
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      <!-- END timeline item -->
-                    <!-- timeline item -->
-                      <div>
-                        <i class="fas fa-shipping-fast bg-warning"></i>
+                        <!-- END timeline item -->
+                        @else
+                        <!-- timeline item -->
+                        <div>
+                          <i class="fas fas fa-box bg-success"></i>
 
-                        <div class="timeline-item">
-                          <span class="time"><i class="far fa-clock"></i> 5 mins ago</span>
+                          <div class="timeline-item">
+                            <span class="time"><i class="far fa-clock"></i>{{$notif->created_at}}</span>
 
-                          <h3 class="timeline-header"><a href="#">Stock 'untel' In - Nouveau Colis</a> 
-                          </h3>
-                          <div class="timeline-body">
-                            L'objet 'untel' a été ajouté dans le stock 'untel' par 'untel'.
+                            <h3 class="timeline-header"><a href="#">Stock In</a></h3>
+
+                            <div class="timeline-body">
+                              {{$notif->Description}}
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      <!-- END timeline item -->
-                       <!-- timeline item -->
-                       <div>
-                        <i class="fas fa-arrow-alt-circle-right bg-info"></i>
-
-                        <div class="timeline-item">
-                          <span class="time"><i class="far fa-clock"></i> 5 mins ago</span>
-
-                          <h3 class="timeline-header"><a href="#">Stock 'untel' In & 'untel' Out - Déplacement</a> 
-                          </h3>
-                          <div class="timeline-body">
-                            L'objet 'untel' a été ajouté dans le stock 'untel' par 'untel'.
-                          </div>
-                        </div>
-                      </div>
-                      <!-- END timeline item -->
-                      <!-- timeline time label -->
-                      <div class="time-label">
-                        <span class="bg-primary">
-                          3 Jan. 2014
-                        </span>
-                      </div>
-                      <!-- /.timeline-label -->
-                      <div>
-                        <i class="far fa-clock bg-gray"></i>
-                      </div>
+                        <!-- END timeline item -->
+                        @endif
+                       @endforeach
+                      
+            
+                
                     </div>
                   </div>
                   <!-- /.tab-pane -->

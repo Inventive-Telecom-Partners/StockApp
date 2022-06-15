@@ -19,10 +19,11 @@ class ProfileController extends Controller
         $user_role = DB::table("users")->join('change_role', 'users.id', '=', 'change_role.idUser')->join('role','change_role.idRole', '=','role.id')->where('users.id',$user_auth)->get(['Role_Name']);
         $roleData = Role::all();
         $jobData = Job::all();
+        $notifData = DB::table("notification")->where('idNotifType',7)->orWhere('idNotifType',8)->orWhere('idNotifType',9)->orderBy('created_at','DESC')->get();
         $user_job = DB::table("users")->join('change_job', 'users.id', '=', 'change_job.idUser')->join('job','change_job.idJob', '=','job.id')->where('users.id',$user_auth)->get(['Job_Name']);
         $countIn = DB::table("change_location")->where("idUser",$user_auth)->where("idFlow", 1)->count();
         $countOut = DB::table("change_location")->where("idUser",$user_auth)->where("idFlow", 2)->count();
-        return view('admin/profil', ['roleData'=>$roleData,'user_role'=>$user_role,'jobData'=>$jobData,'user_job'=>$user_job,'countIn'=>$countIn,'countOut'=>$countOut]);
+        return view('admin/profil', ['notifData'=>$notifData,'roleData'=>$roleData,'user_role'=>$user_role,'jobData'=>$jobData,'user_job'=>$user_job,'countIn'=>$countIn,'countOut'=>$countOut]);
     }
 
     public function update(Request $request, $my_id){
