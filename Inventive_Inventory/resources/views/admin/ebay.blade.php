@@ -86,10 +86,10 @@
               <div class="tab-pane fade" id="product-actions" role="tabpanel" aria-labelledby="product-actions-tab">
                 <div class="row justify-content-between">
                   <div class="col">
-                    <a href="{{ url ('admin/editItem/'.$elementData->id)}}" class="btn btn-success">Modifier</a>
+                    <a href="{{ url ('admin/editItem/'.$elementData->id)}}" class="btn btn-success">Modifier l'objet</a>
                   </div>
                   <div class="col">
-                  <a href="{{ url ('admin/profil')}}" class="btn btn-info">Poster sur ebay (Indisponible)</a>
+                  <a href="{{ url ('admin/profil')}}" class="btn btn-info">Poster sur ebay (actuellement indisponible)</a>
                   </div>                          
                 </div>
             </div>
