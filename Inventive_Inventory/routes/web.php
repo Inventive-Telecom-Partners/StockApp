@@ -63,6 +63,7 @@ Route::prefix('/admin')->middleware(['auth'])->group(function () {
     Route::get('/chartsAdmin', [App\Http\Controllers\admin\ChartController::class,'chartsAdmin']);
 
     Route::get('/report', [App\Http\Controllers\admin\ReportController::class,'index']);
+    Route::get('/reportTab', [App\Http\Controllers\admin\ReportController::class,'displayTab']);
 
     Route::get('/item', [App\Http\Controllers\admin\SalesController::class,'index']);
     Route::get('/seeItem/{element_id}/{level_id}', [App\Http\Controllers\admin\SalesController::class,'display']);

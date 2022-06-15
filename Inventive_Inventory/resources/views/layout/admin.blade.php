@@ -501,12 +501,6 @@
   })
 </script>
 <script>
-  $(function () {
-//Date range picker
-    $('#reservation').daterangepicker()
-  })
-</script>
-<script>
   $('#lol').click(function() {
     $('#showhide').toggleClass('sidebar-mini layout-fixed sidebar-open');
     $('#showhide').toggleClass('sidebar-mini layout-fixed sidebar-closed sidebar-collapse');
