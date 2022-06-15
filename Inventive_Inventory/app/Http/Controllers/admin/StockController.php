@@ -52,7 +52,23 @@ class StockController extends Controller
         $notifDesc="Le stock " . $StockName . " a été supprimé par " . Auth::user()->Name;
         $notifi = array("Description"=>$notifDesc,"idNotifType"=>6,"idUser"=>Auth::user()->id,"Read"=>0,'created_at'=>date("Y-m-d H:i:s", strtotime('+2 hours')));
         DB::table("notification")->insert($notifi);
+
+        $getShelf= DB::table('shelf')->where('idStock',$stock_id)->get();
+        foreach($getShelf as $shelfDel){
+            $getLevel=DB::table('level')->where('idShelf',$shelfDel->id)->get();
+            foreach($getLevel as $levelDel){
+                $getLocation=DB::table('change_location')->where('idLevel',$levelDel->id)->get();
+                foreach($getLocation as $locaDel){
+                    DB::table('change_location')->where('id',$locaDel->id)->update([
+                        'idLevel' => 1
+                    ]);
+                }
+                DB::table('level')->where('id',$levelDel->id)->delete();
+            }
+            DB::table('shelf')->where('id',$shelfDel->id)->delete();
+        }
         DB::table('stock')->where('id',$stock_id)->delete();
+        
         return redirect()->back()->with('message', "Le stock a été supprimé");
     }
 
@@ -95,7 +111,19 @@ class StockController extends Controller
         $notifDesc="L'étagère " . $ShelfName . " a été supprimée par " . Auth::user()->Name;
         $notifi = array("Description"=>$notifDesc,"idNotifType"=>5,"idUser"=>Auth::user()->id,"Read"=>0,'created_at'=>date("Y-m-d H:i:s", strtotime('+2 hours')));
         DB::table("notification")->insert($notifi);
-        DB::table('shelf')->where('id',$shelf_id)->delete();
+
+
+         $getLevel=DB::table('level')->where('idShelf',$shelfDel->id)->get();
+            foreach($getLevel as $levelDel){
+                $getLocation=DB::table('change_location')->where('idLevel',$levelDel->id)->get();
+                foreach($getLocation as $locaDel){
+                    DB::table('change_location')->where('id',$locaDel->id)->update([
+                        'idLevel' => 1
+                    ]);
+                }
+                DB::table('level')->where('id',$levelDel->id)->delete();
+            }
+            DB::table('shelf')->where('id',$shelf_id)->delete();
         return redirect()->back()->with('message', "L'étagère a été supprimée");
     }
 
@@ -139,6 +167,13 @@ class StockController extends Controller
         $notifDesc="L'étage " . $LevelName . " a été supprimée par " . Auth::user()->Name;
         $notifi = array("Description"=>$notifDesc,"idNotifType"=>5,"idUser"=>Auth::user()->id,"Read"=>0,'created_at'=>date("Y-m-d H:i:s", strtotime('+2 hours')));
         DB::table("notification")->insert($notifi);
+
+        $getLocation=DB::table('change_location')->where('idLevel',$levelDel->id)->get();
+                foreach($getLocation as $locaDel){
+                    DB::table('change_location')->where('id',$locaDel->id)->update([
+                        'idLevel' => 1
+                    ]);
+                }
         DB::table('level')->where('id',$level_id)->delete();
         return redirect()->back()->with('message', "L'étage a été supprimé");
     }
