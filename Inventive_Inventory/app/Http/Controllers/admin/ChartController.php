@@ -18,13 +18,27 @@ class ChartController extends Controller
     }
 
     public function chartsAdmin(){
-        $changeLoca= DB::table('change_location')->get();
-        $countIn= $changeLoca->where('idFlow',1)->count();
-        $countOut= $changeLoca->where('idFlow',2)->count();
+        $In = DB::table('change_location')->where('idFlow',1)->get();
+        $Out = DB::table('change_location')->where('idFlow',2)->get();
+        $countIn= $In->count();
+        $countOut= $Out->count();
+        $elementData = DB::table('element')->get();
+        $typeData = DB::table('category')->get();
+        foreach($In as $i){
+            foreach($elementData as $element){
+                if($element->id == $i->idElement){
+                    foreach($typeData as $cat){
+                        if($cat->id == $element->idCategory){
+                            $countTypeIn[] =$cat;
+                        }
+                    }
+                }
+            }
+        }
         $stockData= Stock::all();
         $shelfData = Shelf::all();
         $levelData = Level::all();
-        return view('admin/chartsAdmin');
+        return view('admin/chartsAdmin',['countIn'=>$countIn,'countOut'=>$countOut,'countTypeIn'=>$countTypeIn]);
     }
 
 }
